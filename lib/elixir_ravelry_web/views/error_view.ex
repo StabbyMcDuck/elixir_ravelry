@@ -1,5 +1,5 @@
-defmodule ElixirRavelry.ErrorView do
-  use ElixirRavelry.Web, :view
+defmodule ElixirRavelryWeb.ErrorView do
+  use ElixirRavelryWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"

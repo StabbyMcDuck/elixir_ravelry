@@ -1,4 +1,4 @@
-defmodule ElixirRavelry.ErrorHelpers do
+defmodule ElixirRavelryWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule ElixirRavelry.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(ElixirRavelry.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(ElixirRavelryWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ElixirRavelry.Gettext, "errors", msg, opts)
+      Gettext.dgettext(ElixirRavelryWeb.Gettext, "errors", msg, opts)
     end
   end
 end

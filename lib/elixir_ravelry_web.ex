@@ -1,12 +1,12 @@
-defmodule ElixirRavelry.Web do
+defmodule ElixirRavelryWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use ElixirRavelry.Web, :controller
-      use ElixirRavelry.Web, :view
+      use ElixirRavelryWeb, :controller
+      use ElixirRavelryWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -28,20 +28,21 @@ defmodule ElixirRavelry.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller
+      use Phoenix.Controller, namespace: ElixirRavelryWeb
 
       alias ElixirRavelry.Repo
       import Ecto
       import Ecto.Query
 
-      import ElixirRavelry.Router.Helpers
-      import ElixirRavelry.Gettext
+      import ElixirRavelryWeb.Router.Helpers
+      import ElixirRavelryWeb.Gettext
     end
   end
 
   def view do
     quote do
-      use Phoenix.View, root: "web/templates"
+      use Phoenix.View, root: "lib/elixir_ravelry_web/templates",
+                        namespace: ElixirRavelryWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -49,9 +50,9 @@ defmodule ElixirRavelry.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import ElixirRavelry.Router.Helpers
-      import ElixirRavelry.ErrorHelpers
-      import ElixirRavelry.Gettext
+      import ElixirRavelryWeb.Router.Helpers
+      import ElixirRavelryWeb.ErrorHelpers
+      import ElixirRavelryWeb.Gettext
     end
   end
 
@@ -68,7 +69,7 @@ defmodule ElixirRavelry.Web do
       alias ElixirRavelry.Repo
       import Ecto
       import Ecto.Query
-      import ElixirRavelry.Gettext
+      import ElixirRavelryWeb.Gettext
     end
   end
 

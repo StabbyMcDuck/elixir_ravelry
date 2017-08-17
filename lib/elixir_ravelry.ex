@@ -11,9 +11,10 @@ defmodule ElixirRavelry do
       # Start the Ecto repository
       # supervisor(ElixirRavelry.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ElixirRavelry.Endpoint, []),
+      supervisor(ElixirRavelryWeb.Endpoint, []),
       # Start your own worker by calling: ElixirRavelry.Worker.start_link(arg1, arg2, arg3)
       # worker(ElixirRavelry.Worker, [arg1, arg2, arg3]),
+      supervisor(Bolt.Sips, [Application.get_env(:bolt_sips, Bolt)])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -25,7 +26,7 @@ defmodule ElixirRavelry do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    ElixirRavelry.Endpoint.config_change(changed, removed)
+    ElixirRavelryWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

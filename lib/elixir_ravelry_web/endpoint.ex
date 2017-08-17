@@ -1,7 +1,7 @@
-defmodule ElixirRavelry.Endpoint do
+defmodule ElixirRavelryWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :elixir_ravelry
 
-  socket "/socket", ElixirRavelry.UserSocket
+  socket "/socket", ElixirRavelryWeb.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -38,5 +38,5 @@ defmodule ElixirRavelry.Endpoint do
     key: "_elixir_ravelry_key",
     signing_salt: "EgvV6MZ9"
 
-  plug ElixirRavelry.Router
+  plug ElixirRavelryWeb.Router
 end

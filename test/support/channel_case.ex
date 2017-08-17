@@ -1,4 +1,4 @@
-defmodule ElixirRavelry.ChannelCase do
+defmodule ElixirRavelryWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule ElixirRavelry.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint ElixirRavelry.Endpoint
+      @endpoint ElixirRavelryWeb.Endpoint
     end
   end
 

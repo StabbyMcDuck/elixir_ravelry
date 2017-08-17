@@ -1,4 +1,4 @@
-defmodule ElixirRavelry.ConnCase do
+defmodule ElixirRavelryWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,19 +25,14 @@ defmodule ElixirRavelry.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import ElixirRavelry.Router.Helpers
+      import ElixirRavelryWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ElixirRavelry.Endpoint
+      @endpoint ElixirRavelryWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ElixirRavelry.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ElixirRavelry.Repo, {:shared, self()})
-    end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
