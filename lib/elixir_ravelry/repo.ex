@@ -44,11 +44,28 @@ defmodule ElixirRavelry.Repo do
   def list_users(conn) do
     conn
     |> Bolt.Sips.query!(
-      """
-      MATCH (u:User)
-      RETURN u
-      """
-    )
+         """
+         MATCH (u:User)
+         RETURN u
+         """
+       )
     |> return_to_users()
+  end
+
+  def get_user(conn, id) do
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH (u:User)
+         WHERE id(u) = toInteger({id})
+         RETURN u
+         """,
+         %{id: id}
+       )
+    |> return_to_users()
+    |> case do
+        [] -> :error
+        [user] -> {:ok, user}
+       end
   end
 end
