@@ -10,5 +10,6 @@ defmodule ElixirRavelryWeb.Router do
     pipe_through :api
 
     resources "/users", UserController, only: ~w(index show)a
+    resources "/wool", WoolController, only: ~w(index show)a
   end
 end

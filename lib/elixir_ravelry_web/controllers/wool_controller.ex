@@ -1,22 +1,21 @@
-# Rename PageController to UserController
-defmodule ElixirRavelryWeb.UserController do
+defmodule ElixirRavelryWeb.WoolController do
   use ElixirRavelryWeb, :controller
 
   alias ElixirRavelry.Repo
 
   def index(conn, _params) do
-    users = conn
+    wool = conn
             |> bolt_sips_conn()
-            |> Repo.list_users()
-    json conn, users
+            |> Repo.list_wool()
+    json conn, wool
   end
 
   def show(conn, %{"id"=>id}) do
     conn
       |> bolt_sips_conn()
-      |> Repo.get_user(id)
+      |> Repo.get_wool(id)
       |> case do
-           {:ok, user} -> json conn, user
+           {:ok, wool} -> json conn, wool
                           :error -> not_found(conn)
          end
   end

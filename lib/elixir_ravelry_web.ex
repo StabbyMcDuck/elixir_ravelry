@@ -34,6 +34,7 @@ defmodule ElixirRavelryWeb do
       import Ecto
       import Ecto.Query
 
+      import ElixirRavelryWeb.Controller
       import ElixirRavelryWeb.Router.Helpers
       import ElixirRavelryWeb.Gettext
     end
