@@ -1,8 +1,12 @@
 defmodule ElixirRavelryWeb.User do
   use ElixirRavelryWeb, :model
 
+  alias ElixirRavelryWeb.Owns
+
   schema "users" do
     field :name, :string
+
+    has_many :owns, Owns
   end
 
   defimpl Poison.Encoder do

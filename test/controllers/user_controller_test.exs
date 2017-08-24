@@ -1,9 +1,8 @@
 defmodule ElixirRavelryWeb.UserControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  alias ElixirRavelry.Repo
-  alias ElixirRavelryWeb.User
-
+  import ElixirRavelry.UserCase
+  
   # Callbacks
 
   setup %{conn: conn} do
@@ -43,9 +42,4 @@ defmodule ElixirRavelryWeb.UserControllerTest do
     assert json_response(conn, 200) == %{"id" => user.id, "name" => user.name}
   end
 
-  # Private functions
-
-  defp create_user(bolt_sips_conn) do
-    Repo.create_user(bolt_sips_conn, %User{name: Faker.Name.name()})
-  end
 end

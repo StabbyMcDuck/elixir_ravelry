@@ -11,5 +11,6 @@ defmodule ElixirRavelryWeb.Router do
 
     resources "/users", UserController, only: ~w(index show)a
     resources "/wool", WoolController, only: ~w(index show)a
+    resources "/owns", OwnsController, only: ~w(index show)a
   end
 end

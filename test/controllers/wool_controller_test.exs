@@ -1,8 +1,7 @@
 defmodule ElixirRavelryWeb.WoolControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  alias ElixirRavelry.Repo
-  alias ElixirRavelryWeb.Wool
+  import ElixirRavelry.WoolCase
 
   # Callbacks
 
@@ -41,11 +40,5 @@ defmodule ElixirRavelryWeb.WoolControllerTest do
     wool = create_wool(bolt_sips_conn)
     conn = get conn, "/api/v1/wool/#{wool.id}"
     assert json_response(conn, 200) == %{"id" => wool.id, "name" => wool.name}
-  end
-
-  # Private functions
-
-  defp create_wool(bolt_sips_conn) do
-    Repo.create_wool(bolt_sips_conn, %Wool{name: Faker.Name.name()})
   end
 end
