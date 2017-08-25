@@ -1,4 +1,4 @@
-defmodule ElixirRavelryWeb.Material_for do
+defmodule ElixirRavelryWeb.MaterialFor do
   use ElixirRavelryWeb, :model
 
   alias ElixirRavelryWeb.{Wool, Carding}

@@ -1,4 +1,4 @@
-defmodule ElixirRavelryWeb.Material_forController do
+defmodule ElixirRavelryWeb.MaterialForController do
   use ElixirRavelryWeb, :controller
 
   alias ElixirRavelry.Repo
@@ -6,14 +6,14 @@ defmodule ElixirRavelryWeb.Material_forController do
   def index(conn, _params) do
     material_for = conn
            |> bolt_sips_conn()
-           |> Repo.Material_for.list()
+           |> Repo.MaterialFor.list()
     json conn, material_for
   end
 
   def show(conn, %{"id" => id}) do
     conn
     |> bolt_sips_conn()
-    |> Repo.Material_for.get(id)
+    |> Repo.MaterialFor.get(id)
     |> case do
          {:ok, material_for} -> json conn, material_for
          :error -> not_found(conn)

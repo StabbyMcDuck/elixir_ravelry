@@ -1,9 +1,9 @@
-defmodule ElixirRavelry.Repo.Material_for do
+defmodule ElixirRavelry.Repo.MaterialFor do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{Material_for}
+  alias ElixirRavelryWeb.{MaterialFor}
 
-  def create(conn, %Material_for{wool_id: wool_id, carding_id: carding_id}) do
+  def create(conn, %MaterialFor{wool_id: wool_id, carding_id: carding_id}) do
     conn
     |> Bolt.Sips.query!(
          """
@@ -51,9 +51,9 @@ defmodule ElixirRavelry.Repo.Material_for do
   end
 
   def return_to_material_for(%{"m" => %Bolt.Sips.Types.Relationship{"end": carding_id, id: id, start: wool_id, type: "MATERIAL_FOR"}}) do
-    %Material_for{
+    %MaterialFor{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "Material_for"},
+        source: {nil, "MaterialFor"},
         state: :loaded
       },
       id: id,

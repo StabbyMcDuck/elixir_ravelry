@@ -1,7 +1,7 @@
-defmodule ElixirRavelryWeb.Material_forControllerTest do
+defmodule ElixirRavelryWeb.MaterialForControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{Material_forCase}
+  import ElixirRavelry.{MaterialForCase}
 
   # Callbacks
 
@@ -20,25 +20,25 @@ defmodule ElixirRavelryWeb.Material_forControllerTest do
 
   # Test
 
-  test "GET /api/v1/material_for without material_for", %{conn: conn} do
-    conn = get conn, "/api/v1/material_for"
+  test "GET /api/v1/material-for without material-for", %{conn: conn} do
+    conn = get conn, "/api/v1/material-for"
     assert json_response(conn, 200) == []
   end
 
-  test "GET /api/v1/material_for with material_for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+  test "GET /api/v1/material-for with material-for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     material_for = create_material_for(bolt_sips_conn)
-    conn = get conn, "/api/v1/material_for"
+    conn = get conn, "/api/v1/material-for"
     assert json_response(conn, 200) == [%{"id" => material_for.id, "wool_id" => material_for.wool_id, "carding_id" => material_for.carding_id}]
   end
 
-  test "GET /api/v1/material_for/:id without material_for", %{conn: conn} do
-    conn = get conn, "/api/v1/material_for/-1"
+  test "GET /api/v1/material-for/:id without material_for", %{conn: conn} do
+    conn = get conn, "/api/v1/material-for/-1"
     assert json_response(conn, 404) == %{"error" => "Not Found"}
   end
 
-  test "GET /api/v1/material_for/:id with material_for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+  test "GET /api/v1/material-for/:id with material_for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     material_for = create_material_for(bolt_sips_conn)
-    conn = get conn, "/api/v1/material_for/#{material_for.id}"
+    conn = get conn, "/api/v1/material-for/#{material_for.id}"
     assert json_response(conn, 200) == %{"id" => material_for.id, "wool_id" => material_for.wool_id, "carding_id" => material_for.carding_id}
   end
 end
