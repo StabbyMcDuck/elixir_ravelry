@@ -9,6 +9,7 @@ defmodule ElixirRavelryWeb.Router do
   scope "/api/v1", ElixirRavelryWeb do
     pipe_through :api
 
+    resources "/cards", CardsController, only: ~w(index show)a
     resources "/carding", CardingController, only: ~w(index show)a
     resources "/owns", OwnsController, only: ~w(index show)a
     resources "/users", UserController, only: ~w(index show)a

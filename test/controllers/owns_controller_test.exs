@@ -1,10 +1,7 @@
 defmodule ElixirRavelryWeb.OwnsControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{UserCase, WoolCase}
-
-  alias ElixirRavelry.Repo
-  alias ElixirRavelryWeb.Owns
+  import ElixirRavelry.{OwnsCase}
 
   # Callbacks
 
@@ -45,11 +42,4 @@ defmodule ElixirRavelryWeb.OwnsControllerTest do
     assert json_response(conn, 200) == %{"id" => owns.id, "started_at" => Ecto.DateTime.to_iso8601(owns.started_at), "user_id" => owns.user_id, "wool_id" => owns.wool_id}
   end
 
-  # Private functions
-
-  defp create_owns(bolt_sips_conn) do
-    user = create_user(bolt_sips_conn)
-    wool = create_wool(bolt_sips_conn)
-    Repo.create_owns(bolt_sips_conn, %Owns{started_at: Ecto.DateTime.utc(), user_id: user.id, wool_id: wool.id})
-  end
 end
