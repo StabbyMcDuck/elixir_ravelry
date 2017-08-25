@@ -2,7 +2,7 @@ defmodule ElixirRavelryWeb.UserControllerTest do
   use ElixirRavelryWeb.ConnCase
 
   import ElixirRavelry.UserCase
-  
+
   # Callbacks
 
   setup %{conn: conn} do
