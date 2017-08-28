@@ -3,16 +3,16 @@ defmodule ElixirRavelry.Repo.MaterialFor do
 
   alias ElixirRavelryWeb.{MaterialFor}
 
-  def create(conn, %MaterialFor{wool_id: wool_id, carding_id: carding_id}) do
+  def create(conn, %MaterialFor{end_node_id: end_node_id, start_node_id: start_node_id}) do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (w:Wool) WHERE id(w) = {wool_id}
-         MATCH (l:Carding) WHERE id(l) = {carding_id}
-         CREATE (w)-[m:MATERIAL_FOR]->(l)
+         MATCH (e) WHERE id(e) = {end_node_id}
+         MATCH (s) WHERE id(s) = {start_node_id}
+         CREATE (s)-[m:MATERIAL_FOR]->(e)
          RETURN m
          """,
-         %{wool_id: wool_id, carding_id: carding_id}
+         %{end_node_id: end_node_id, start_node_id: start_node_id}
        )
     |> return_to_material_for_list()
     |> hd()
@@ -22,7 +22,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (:Wool)-[m:MATERIAL_FOR]->(:Carding)
+         MATCH ()-[m:MATERIAL_FOR]->()
          WHERE id(m) = toInteger({id})
          RETURN m
          """,
@@ -39,7 +39,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (:Wool)-[m:MATERIAL_FOR]->(:Carding)
+         MATCH ()-[m:MATERIAL_FOR]->()
          RETURN m
          """
        )
@@ -50,15 +50,15 @@ defmodule ElixirRavelry.Repo.MaterialFor do
     Enum.map(return, &return_to_material_for/1)
   end
 
-  def return_to_material_for(%{"m" => %Bolt.Sips.Types.Relationship{"end": carding_id, id: id, start: wool_id, type: "MATERIAL_FOR"}}) do
+  def return_to_material_for(%{"m" => %Bolt.Sips.Types.Relationship{"end": end_node_id, id: id, start: start_node_id, type: "MATERIAL_FOR"}}) do
     %MaterialFor{
       __meta__: %Ecto.Schema.Metadata{
         source: {nil, "MaterialFor"},
         state: :loaded
       },
       id: id,
-      carding_id: carding_id,
-      wool_id: wool_id
+      start_node_id: start_node_id,
+      end_node_id: end_node_id
     }
   end
 end

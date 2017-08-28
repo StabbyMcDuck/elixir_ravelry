@@ -1,16 +1,16 @@
 defmodule ElixirRavelryWeb.MaterialFor do
   use ElixirRavelryWeb, :model
 
-  alias ElixirRavelryWeb.{Wool, Carding}
+  alias ElixirRavelryWeb.Node
 
   schema "material_for" do
-    belongs_to :wool, Wool
-    belongs_to :carding, Carding
+    belongs_to :end_node, Node
+    belongs_to :start_node, Node
   end
 
   defimpl Poison.Encoder do
-    def encode(%{id: id, carding_id: carding_id, wool_id: wool_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, carding_id: carding_id, wool_id: wool_id}, options)
+    def encode(%{id: id, end_node_id: end_node_id, start_node_id: start_node_id}, options) do
+      Poison.Encoder.Map.encode(%{id: id, end_node_id: end_node_id, start_node_id: start_node_id}, options)
     end
   end
 
