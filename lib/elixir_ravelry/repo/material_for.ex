@@ -24,14 +24,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH ()-[r:MATERIAL_FOR]->()
-         RETURN r
-         """
-       )
-    |> return_to_material_for_list()
+    Repo.list_relationship(conn, "MATERIAL_FOR")
   end
 
   def return_to_material_for_list(return) when is_list(return) do

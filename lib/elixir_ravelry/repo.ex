@@ -57,6 +57,17 @@ defmodule ElixirRavelry.Repo do
        end
   end
 
+  def list_relationship(conn, type) do
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH ()-[r:#{type}]->()
+         RETURN r
+         """
+       )
+    |> return_to_list()
+  end
+
   defp return_to_list(return) when is_list(return) do
     Enum.map(return, &return_to_struct/1)
   end

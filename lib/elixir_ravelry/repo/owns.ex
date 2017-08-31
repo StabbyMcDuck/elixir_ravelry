@@ -24,14 +24,7 @@ defmodule ElixirRavelry.Repo.Owns do
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (u:User)-[r:OWNS]->(w:Wool)
-         RETURN r
-         """
-       )
-    |> return_to_owns_list()
+    Repo.list_relationship(conn, "OWNS")
   end
 
   def return_to_owns_list(return) when is_list(return) do
