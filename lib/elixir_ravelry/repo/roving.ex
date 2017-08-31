@@ -2,6 +2,7 @@ defmodule ElixirRavelry.Repo.Roving do
   @moduledoc false
 
   alias ElixirRavelryWeb.Roving
+  alias ElixirRavelry.Repo
 
   def create(conn, %Roving{name: name}) do
     conn
@@ -17,22 +18,8 @@ defmodule ElixirRavelry.Repo.Roving do
   end
 
   def get(conn, id) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (n:Roving)
-         WHERE id(n) = toInteger({id})
-         RETURN n
-         """,
-         %{id: id}
-       )
-    |> return_to_list()
-    |> case do
-         [] -> :error
-         [roving] -> {:ok, roving}
-       end
+    Repo.get(conn, "Roving", id)
   end
-
 
   def list(conn) do
     conn

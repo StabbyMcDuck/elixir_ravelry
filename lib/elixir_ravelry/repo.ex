@@ -19,7 +19,35 @@ defmodule ElixirRavelry.Repo do
     Module.concat([__MODULE__, type])
   end
 
-  ## Private Functions
+  def get(conn, type, id) do
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH (n:#{type})
+         WHERE id(n) = toInteger({id})
+         RETURN n
+         """,
+         %{id: id}
+       )
+    |> return_to_list()
+    |> case do
+         [] -> :error
+         [node] -> {:ok, node}
+       end
+  end
+
+  defp return_to_list(return) when is_list(return) do
+    Enum.map(return, &return_to_struct/1)
+  end
+
+  defp return_to_struct(
+        %{
+          "n" => node
+        }
+      ) do
+    row_to_struct(node)
+  end
+
 
   #code from http://michal.muskala.eu/2015/07/30/unix-timestamps-in-elixir.html
   epoch = {{1970, 1, 1}, {0, 0, 0}}

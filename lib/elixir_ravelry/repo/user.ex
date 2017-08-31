@@ -2,13 +2,14 @@ defmodule ElixirRavelry.Repo.User do
   @moduledoc false
 
   alias ElixirRavelryWeb.User
+  alias ElixirRavelry.Repo
 
   def create(conn, %User{name: name}) do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (u:User {name: {name}})
-         RETURN u
+         CREATE (n:User {name: {name}})
+         RETURN n
          """,
          %{name: name}
        )
@@ -17,29 +18,15 @@ defmodule ElixirRavelry.Repo.User do
   end
 
   def get(conn, id) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (u:User)
-         WHERE id(u) = toInteger({id})
-         RETURN u
-         """,
-         %{id: id}
-       )
-    |> return_to_users()
-    |> case do
-         [] -> :error
-         [user] -> {:ok, user}
-       end
+    Repo.get(conn, "User", id)
   end
-
 
   def list(conn) do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (u:User)
-         RETURN u
+         MATCH (n:User)
+         RETURN n
          """
        )
     |> return_to_users()
@@ -51,14 +38,21 @@ defmodule ElixirRavelry.Repo.User do
 
   def return_to_user(
         %{
-          "u" => %Bolt.Sips.Types.Node{
-            id: id,
-            labels: ["User"],
-            properties: %{
-              "name" => name
-            }
+          "n" => node
+        }
+      ) do
+    row_to_struct(node)
+  end
+
+  def row_to_struct(
+        %Bolt.Sips.Types.Node{
+          id: id,
+          labels: ["User"],
+          properties: %{
+            "name" => name
           }
         }
+
       ) do
     %User{
       __meta__: %Ecto.Schema.Metadata{

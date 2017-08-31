@@ -18,20 +18,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
   end
 
   def get(conn, id) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (n:DyedRoving)
-         WHERE id(n) = toInteger({id})
-         RETURN n
-         """,
-         %{id: id}
-       )
-    |> return_to_list()
-    |> case do
-         [] -> :error
-         [dyedRoving] -> {:ok, dyedRoving}
-       end
+    Repo.get(conn, "DyedRoving", id)
   end
 
   defp backwards_optional_match(direction) when direction in ~w(backwards both) do
