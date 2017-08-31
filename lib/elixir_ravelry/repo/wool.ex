@@ -18,7 +18,7 @@ defmodule ElixirRavelry.Repo.Wool do
   end
 
   def get(conn, id) do
-    Repo.get(conn, "Wool", id)
+    Repo.get_node(conn, "Wool", id)
   end
 
   def list(conn) do

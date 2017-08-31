@@ -18,7 +18,7 @@ defmodule ElixirRavelry.Repo.Roving do
   end
 
   def get(conn, id) do
-    Repo.get(conn, "Roving", id)
+    Repo.get_node(conn, "Roving", id)
   end
 
   def list(conn) do

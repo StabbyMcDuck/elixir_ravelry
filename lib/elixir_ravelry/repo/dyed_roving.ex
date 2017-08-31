@@ -18,7 +18,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
   end
 
   def get(conn, id) do
-    Repo.get(conn, "DyedRoving", id)
+    Repo.get_node(conn, "DyedRoving", id)
   end
 
   defp backwards_optional_match(direction) when direction in ~w(backwards both) do

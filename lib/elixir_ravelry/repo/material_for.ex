@@ -2,6 +2,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
   @moduledoc false
 
   alias ElixirRavelryWeb.{MaterialFor}
+  alias ElixirRavelry.Repo
 
   def create(conn, %MaterialFor{end_node_id: end_node_id, start_node_id: start_node_id}) do
     conn
@@ -9,8 +10,8 @@ defmodule ElixirRavelry.Repo.MaterialFor do
          """
          MATCH (e) WHERE id(e) = {end_node_id}
          MATCH (s) WHERE id(s) = {start_node_id}
-         CREATE (s)-[m:MATERIAL_FOR]->(e)
-         RETURN m
+         CREATE (s)-[r:MATERIAL_FOR]->(e)
+         RETURN r
          """,
          %{end_node_id: end_node_id, start_node_id: start_node_id}
        )
@@ -19,28 +20,15 @@ defmodule ElixirRavelry.Repo.MaterialFor do
   end
 
   def get(conn, id) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH ()-[m:MATERIAL_FOR]->()
-         WHERE id(m) = toInteger({id})
-         RETURN m
-         """,
-         %{id: id}
-       )
-    |> return_to_material_for_list()
-    |> case do
-         [] -> :error
-         [material_for] -> {:ok, material_for}
-       end
+    Repo.get_relationship(conn, "MATERIAL_FOR", id)
   end
 
   def list(conn) do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH ()-[m:MATERIAL_FOR]->()
-         RETURN m
+         MATCH ()-[r:MATERIAL_FOR]->()
+         RETURN r
          """
        )
     |> return_to_material_for_list()
@@ -50,7 +38,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
     Enum.map(return, &return_to_material_for/1)
   end
 
-  def return_to_material_for(%{"m" => relationship}) do
+  def return_to_material_for(%{"r" => relationship}) do
     row_to_struct(relationship)
   end
 

@@ -15,11 +15,15 @@ defmodule ElixirRavelry.Repo do
     __MODULE__.MaterialFor
   end
 
+  def type_to_repo_module("OWNS") do
+    __MODULE__.Owns
+  end
+
   def type_to_repo_module(type) do
     Module.concat([__MODULE__, type])
   end
 
-  def get(conn, type, id) do
+  def get_node(conn, type, id) do
     conn
     |> Bolt.Sips.query!(
          """
@@ -36,6 +40,23 @@ defmodule ElixirRavelry.Repo do
        end
   end
 
+  def get_relationship(conn, type, id) do
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH ()-[r:#{type}]->()
+         WHERE id(r) = toInteger({id})
+         RETURN r
+         """,
+         %{id: id}
+       )
+    |> return_to_list()
+    |> case do
+         [] -> :error
+         [relationship] -> {:ok, relationship}
+       end
+  end
+
   defp return_to_list(return) when is_list(return) do
     Enum.map(return, &return_to_struct/1)
   end
@@ -48,6 +69,13 @@ defmodule ElixirRavelry.Repo do
     row_to_struct(node)
   end
 
+  defp return_to_struct(
+         %{
+           "r" => relationship
+         }
+       ) do
+    row_to_struct(relationship)
+  end
 
   #code from http://michal.muskala.eu/2015/07/30/unix-timestamps-in-elixir.html
   epoch = {{1970, 1, 1}, {0, 0, 0}}
