@@ -3,7 +3,7 @@ defmodule ElixirRavelry.UserCase do
   alias ElixirRavelryWeb.User
 
   def create_user(bolt_sips_conn) do
-    Repo.create_user(bolt_sips_conn, %User{name: Faker.Name.name()})
+    Repo.User.create(bolt_sips_conn, %User{name: Faker.Name.name()})
   end
 
 end

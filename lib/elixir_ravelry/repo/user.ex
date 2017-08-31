@@ -1,7 +1,7 @@
 defmodule ElixirRavelry.Repo.User do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{User, Wool, Owns}
+  alias ElixirRavelryWeb.User
 
   def create(conn, %User{name: name}) do
     conn

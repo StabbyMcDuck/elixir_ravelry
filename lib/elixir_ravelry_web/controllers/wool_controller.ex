@@ -6,14 +6,14 @@ defmodule ElixirRavelryWeb.WoolController do
   def index(conn, _params) do
     wool = conn
             |> bolt_sips_conn()
-            |> Repo.list_wool()
+            |> Repo.Wool.list()
     json conn, wool
   end
 
   def show(conn, %{"id"=>id}) do
     conn
       |> bolt_sips_conn()
-      |> Repo.get_wool(id)
+      |> Repo.Wool.get(id)
       |> case do
            {:ok, wool} -> json conn, wool
                           :error -> not_found(conn)

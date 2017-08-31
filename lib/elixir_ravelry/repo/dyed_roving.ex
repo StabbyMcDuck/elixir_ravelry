@@ -8,8 +8,8 @@ defmodule ElixirRavelry.Repo.DyedRoving do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (d:DyedRoving {name: {name}})
-         RETURN d
+         CREATE (n:DyedRoving {name: {name}})
+         RETURN n
          """,
          %{name: name}
        )
@@ -21,9 +21,9 @@ defmodule ElixirRavelry.Repo.DyedRoving do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (d:DyedRoving)
-         WHERE id(d) = toInteger({id})
-         RETURN d
+         MATCH (n:DyedRoving)
+         WHERE id(n) = toInteger({id})
+         RETURN n
          """,
          %{id: id}
        )
@@ -117,8 +117,8 @@ defmodule ElixirRavelry.Repo.DyedRoving do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (d:DyedRoving)
-         RETURN d
+         MATCH (n:DyedRoving)
+         RETURN n
          """
        )
     |> return_to_list()
@@ -130,7 +130,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
 
   def return_to_dyed_roving(
         %{
-          "d" => node
+          "n" => node
         }
       ) do
     row_to_struct(node)

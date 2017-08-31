@@ -1,7 +1,7 @@
 defmodule ElixirRavelry.Repo.Owns do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{User, Wool, Owns}
+  alias ElixirRavelryWeb.Owns
 
   def create(conn, %Owns{started_at: started_at, user_id: user_id, wool_id: wool_id}) do
     conn
@@ -71,7 +71,7 @@ defmodule ElixirRavelry.Repo.Owns do
 
   def from_timestamp(timestamp) do
     timestamp
-    |> +(@epoch)
+    |> Kernel.+(@epoch)
     |> :calendar.gregorian_seconds_to_datetime()
     |> Ecto.DateTime.from_erl()
   end
@@ -80,6 +80,6 @@ defmodule ElixirRavelry.Repo.Owns do
     datetime
     |> Ecto.DateTime.to_erl()
     |> :calendar.datetime_to_gregorian_seconds()
-    |> -(@epoch)
+    |> Kernel.-(@epoch)
   end
 end

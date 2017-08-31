@@ -1,14 +1,14 @@
 defmodule ElixirRavelry.Repo.Wool do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{User, Wool, Owns}
+  alias ElixirRavelryWeb.Wool
 
   def create(conn, %Wool{name: name}) do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (w:Wool {name: {name}})
-         RETURN w
+         CREATE (n:Wool {name: {name}})
+         RETURN n
          """,
          %{name: name}
        )
@@ -20,9 +20,9 @@ defmodule ElixirRavelry.Repo.Wool do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (w:Wool)
-         WHERE id(w) = toInteger({id})
-         RETURN w
+         MATCH (n:Wool)
+         WHERE id(n) = toInteger({id})
+         RETURN n
          """,
          %{id: id}
        )
@@ -38,8 +38,8 @@ defmodule ElixirRavelry.Repo.Wool do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (w:Wool)
-         RETURN w
+         MATCH (n:Wool)
+         RETURN n
          """
        )
     |> return_to_list()
@@ -51,7 +51,7 @@ defmodule ElixirRavelry.Repo.Wool do
 
   def return_to_wool(
         %{
-          "w" => node
+          "n" => node
         }
       ) do
     row_to_struct(node)

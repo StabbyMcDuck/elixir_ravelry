@@ -3,6 +3,7 @@ defmodule ElixirRavelry.Mixfile do
 
   def project do
     [app: :elixir_ravelry,
+     aliases: aliases(),
      version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -47,5 +48,9 @@ defmodule ElixirRavelry.Mixfile do
      {:cowboy, "~> 1.0"},
      {:bolt_sips, "~> 0.3.2"},
      {:faker, "~> 0.8.0", only: :test}]
+  end
+
+  defp aliases() do
+    ["compile": "compile --warnings-as-errors"]
   end
 end

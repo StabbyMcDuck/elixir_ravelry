@@ -6,14 +6,14 @@ defmodule ElixirRavelryWeb.OwnsController do
   def index(conn, _params) do
     owns = conn
            |> bolt_sips_conn()
-           |> Repo.list_owns()
+           |> Repo.Owns.list()
     json conn, owns
   end
 
   def show(conn, %{"id" => id}) do
     conn
     |> bolt_sips_conn()
-    |> Repo.get_owns(id)
+    |> Repo.Owns.get(id)
     |> case do
          {:ok, owns} -> json conn, owns
          :error -> not_found(conn)

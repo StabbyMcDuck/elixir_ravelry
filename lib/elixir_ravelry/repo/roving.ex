@@ -7,8 +7,8 @@ defmodule ElixirRavelry.Repo.Roving do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (c:Roving {name: {name}})
-         RETURN c
+         CREATE (n:Roving {name: {name}})
+         RETURN n
          """,
          %{name: name}
        )
@@ -20,9 +20,9 @@ defmodule ElixirRavelry.Repo.Roving do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (c:Roving)
-         WHERE id(c) = toInteger({id})
-         RETURN c
+         MATCH (n:Roving)
+         WHERE id(n) = toInteger({id})
+         RETURN n
          """,
          %{id: id}
        )
@@ -38,8 +38,8 @@ defmodule ElixirRavelry.Repo.Roving do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (c:Roving)
-         RETURN c
+         MATCH (n:Roving)
+         RETURN n
          """
        )
     |> return_to_list()
@@ -51,7 +51,7 @@ defmodule ElixirRavelry.Repo.Roving do
 
   def return_to_roving(
         %{
-          "c" => node
+          "n" => node
         }
       ) do
     row_to_struct(node)
