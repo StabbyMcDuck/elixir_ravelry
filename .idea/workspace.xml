@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c64a07f8-d916-47b2-b171-f1c0c8a17690" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo/material_for.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/material_for.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo/owns.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/owns.ex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/elixirravelry/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/elixirravelry/ebin/" />
@@ -62,11 +62,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="owns.ex" pinned="false" current-in-tab="true">
+          <file leaf-file-name="owns.ex" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/models/owns.ex">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="270">
                   <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="wool.ex" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="360">
+                  <caret line="24" column="32" lean-forward="false" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -116,11 +126,11 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="repo.ex" pinned="false" current-in-tab="false">
+          <file leaf-file-name="repo.ex" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo.ex">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="127">
-                  <caret line="67" column="17" lean-forward="false" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+                <state relative-caret-position="492">
+                  <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
@@ -136,17 +146,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="wool.ex" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="owns.ex" pinned="false" current-in-tab="true">
+          <file leaf-file-name="owns.ex" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/owns.ex">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="630">
@@ -342,13 +342,13 @@
         <option value="$PROJECT_DIR$/mix.exs" />
         <option value="$PROJECT_DIR$/test/support/conn_case.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/dyed_roving.ex" />
-        <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/user.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/roving.ex" />
         <option value="$PROJECT_DIR$/test/controllers/material_for_controller_test.exs" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/material_for.ex" />
-        <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/owns.ex" />
+        <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
+        <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex" />
       </list>
     </option>
   </component>
@@ -763,9 +763,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Mix_ExUnit_test_(1) - 2017.08.31 at 17h 08m 33s.xml">
-      <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="Mix_ExUnit_test_(1) - 2017.08.31 at 17h 08m 48s.xml">
       <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
     </history-entry>
@@ -793,6 +790,9 @@
     <history-entry file="Mix_ExUnit_test_(1) - 2017.08.31 at 17h 28m 38s.xml">
       <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="Mix_ExUnit_test_(1) - 2017.08.31 at 17h 31m 23s.xml">
+      <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="1680" y="23" width="2560" height="1417" extended-state="6" />
@@ -806,7 +806,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32717475" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32717475" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948422" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1199,14 +1199,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/controllers/owns_controller_test.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -1231,14 +1223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="67" column="17" lean-forward="false" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/owns.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -1251,6 +1235,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="3" lean-forward="true" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/wool.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="32" lean-forward="false" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
           <folding />
         </state>
       </provider>

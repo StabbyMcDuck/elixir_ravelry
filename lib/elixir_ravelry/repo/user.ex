@@ -22,14 +22,7 @@ defmodule ElixirRavelry.Repo.User do
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (n:User)
-         RETURN n
-         """
-       )
-    |> return_to_users()
+    Repo.list_node(conn, "User")
   end
 
   def return_to_users(return) when is_list(return) do

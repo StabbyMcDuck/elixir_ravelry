@@ -101,14 +101,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (n:DyedRoving)
-         RETURN n
-         """
-       )
-    |> return_to_list()
+    Repo.list_node(conn, "DyedRoving")
   end
 
   def return_to_list(return) when is_list(return) do

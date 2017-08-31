@@ -68,6 +68,17 @@ defmodule ElixirRavelry.Repo do
     |> return_to_list()
   end
 
+  def list_node(conn, type) do
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH (n:#{type})
+         RETURN n
+         """
+       )
+    |> return_to_list()
+  end
+
   defp return_to_list(return) when is_list(return) do
     Enum.map(return, &return_to_struct/1)
   end

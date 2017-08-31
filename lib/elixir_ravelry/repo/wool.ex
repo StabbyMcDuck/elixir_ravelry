@@ -22,14 +22,7 @@ defmodule ElixirRavelry.Repo.Wool do
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (n:Wool)
-         RETURN n
-         """
-       )
-    |> return_to_list()
+    Repo.list_node(conn, "Wool")
   end
 
   def return_to_list(return) when is_list(return) do
