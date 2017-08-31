@@ -1,7 +1,7 @@
 defmodule ElixirRavelry.Repo.Cards do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{User, Cards}
+  alias ElixirRavelryWeb.{Cards}
 
   def create(conn, %Cards{user_id: user_id, carding_id: carding_id}) do
     conn

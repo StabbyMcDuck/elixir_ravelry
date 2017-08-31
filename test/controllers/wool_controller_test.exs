@@ -28,7 +28,7 @@ defmodule ElixirRavelryWeb.WoolControllerTest do
   test "GET /api/v1/wool with wool", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     wool = create_wool(bolt_sips_conn)
     conn = get conn, "/api/v1/wool"
-    assert json_response(conn, 200) == [%{"id" => wool.id, "name" => wool.name}]
+    assert json_response(conn, 200) == [%{"id" => wool.id, "name" => wool.name, "type" => "Wool"}]
   end
 
   test "GET /api/v1/wool/:id without wool", %{conn: conn} do
@@ -39,6 +39,6 @@ defmodule ElixirRavelryWeb.WoolControllerTest do
   test "GET /api/v1/wool/:id with wool", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     wool = create_wool(bolt_sips_conn)
     conn = get conn, "/api/v1/wool/#{wool.id}"
-    assert json_response(conn, 200) == %{"id" => wool.id, "name" => wool.name}
+    assert json_response(conn, 200) == %{"id" => wool.id, "name" => wool.name, "type" => "Wool"}
   end
 end

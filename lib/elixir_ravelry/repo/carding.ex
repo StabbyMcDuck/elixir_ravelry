@@ -51,12 +51,18 @@ defmodule ElixirRavelry.Repo.Carding do
 
   def return_to_carding(
         %{
-          "c" => %Bolt.Sips.Types.Node{
-            id: id,
-            labels: ["Carding"],
-            properties: %{
-              "name" => name
-            }
+          "c" => node
+        }
+      ) do
+    row_to_struct(node)
+  end
+
+  def row_to_struct(
+        %Bolt.Sips.Types.Node{
+          id: id,
+          labels: ["Carding"],
+          properties: %{
+            "name" => name
           }
         }
       ) do

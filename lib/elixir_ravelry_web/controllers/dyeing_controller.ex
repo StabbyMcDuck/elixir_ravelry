@@ -19,5 +19,16 @@ defmodule ElixirRavelryWeb.DyeingController do
                           :error -> not_found(conn)
          end
   end
+
+  def graph(conn, params = %{"dyeing_id"=>id}) do
+    direction = Map.get(params, "direction", "both")
+    conn
+    |> bolt_sips_conn()
+    |> Repo.Dyeing.graph(id, direction)
+    |> case do
+         {:ok, graph} -> json conn, graph
+         :error -> not_found(conn)
+       end
+  end
 end
 

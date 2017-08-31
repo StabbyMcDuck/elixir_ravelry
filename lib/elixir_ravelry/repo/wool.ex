@@ -51,12 +51,18 @@ defmodule ElixirRavelry.Repo.Wool do
 
   def return_to_wool(
         %{
-          "w" => %Bolt.Sips.Types.Node{
-            id: id,
-            labels: ["Wool"],
-            properties: %{
-              "name" => name
-            }
+          "w" => node
+        }
+      ) do
+    row_to_struct(node)
+  end
+
+  def row_to_struct(
+        %Bolt.Sips.Types.Node{
+          id: id,
+          labels: ["Wool"],
+          properties: %{
+            "name" => name
           }
         }
       ) do

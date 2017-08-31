@@ -39,8 +39,8 @@ defmodule ElixirRavelryWeb.MaterialForControllerTest do
 
     assert material_fors = json_response(conn, 200)
     assert is_list(material_fors)
-    assert %{"id" => first_material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id} in material_fors
-    assert %{"id" => second_material_for.id, "start_node_id" => carding.id, "end_node_id" => dyeing.id} in material_fors
+    assert %{"id" => first_material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id, "type" => "MaterialFor"} in material_fors
+    assert %{"id" => second_material_for.id, "start_node_id" => carding.id, "end_node_id" => dyeing.id, "type" => "MaterialFor"} in material_fors
   end
 
   test "GET /api/v1/material-for/:id without material_for", %{conn: conn} do
@@ -55,6 +55,6 @@ defmodule ElixirRavelryWeb.MaterialForControllerTest do
     material_for = create_material_for(bolt_sips_conn, %{start_node_id: wool.id, end_node_id: carding.id})
 
     conn = get conn, "/api/v1/material-for/#{material_for.id}"
-    assert json_response(conn, 200) == %{"id" => material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id}
+    assert json_response(conn, 200) == %{"id" => material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id, "type" => "MaterialFor"}
   end
 end

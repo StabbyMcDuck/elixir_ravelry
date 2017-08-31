@@ -10,7 +10,7 @@ defmodule ElixirRavelryWeb.MaterialFor do
 
   defimpl Poison.Encoder do
     def encode(%{id: id, end_node_id: end_node_id, start_node_id: start_node_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, end_node_id: end_node_id, start_node_id: start_node_id}, options)
+      Poison.Encoder.Map.encode(%{id: id, end_node_id: end_node_id, start_node_id: start_node_id, type: "MaterialFor"}, options)
     end
   end
 

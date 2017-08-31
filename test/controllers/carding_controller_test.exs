@@ -28,7 +28,7 @@ defmodule ElixirRavelryWeb.CardingControllerTest do
   test "GET /api/v1/carding with carding", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     carding = create_carding(bolt_sips_conn)
     conn = get conn, "/api/v1/carding"
-    assert json_response(conn, 200) == [%{"id" => carding.id, "name" => carding.name}]
+    assert json_response(conn, 200) == [%{"id" => carding.id, "name" => carding.name, "type" => "Carding"}]
   end
 
   test "GET /api/v1/carding/:id without carding", %{conn: conn} do
@@ -39,6 +39,6 @@ defmodule ElixirRavelryWeb.CardingControllerTest do
   test "GET /api/v1/carding/:id with carding", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     carding = create_carding(bolt_sips_conn)
     conn = get conn, "/api/v1/carding/#{carding.id}"
-    assert json_response(conn, 200) == %{"id" => carding.id, "name" => carding.name}
+    assert json_response(conn, 200) == %{"id" => carding.id, "name" => carding.name, "type" => "Carding"}
   end
 end

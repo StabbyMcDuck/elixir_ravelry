@@ -1,7 +1,7 @@
 defmodule ElixirRavelryWeb.Dyeing do
   use ElixirRavelryWeb, :model
 
-  alias ElixirRavelryWeb.{Owns, Material, Dyes}
+  alias ElixirRavelryWeb.{Owns, MaterialFor, Dyes}
 
   schema "dyeing" do
     field :name, :string
@@ -9,12 +9,13 @@ defmodule ElixirRavelryWeb.Dyeing do
     has_one :dyes, Dyes
     has_one :owns, Owns
 
-    has_many :material, Material_for
+    has_many :material_for_end, MaterialFor, foreign_key: :end_node_id
+    has_many :material_for_start, MaterialFor, foreign_key: :start_node_id
   end
 
   defimpl Poison.Encoder do
     def encode(%{name: name, id: id}, options) do
-      Poison.Encoder.Map.encode(%{name: name, id: id}, options)
+      Poison.Encoder.Map.encode(%{name: name, id: id, type: "Dyeing"}, options)
     end
   end
 end

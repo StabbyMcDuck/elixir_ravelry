@@ -195,6 +195,24 @@ defmodule ElixirRavelry.Repo do
       end
   end
 
+  def row_to_struct(relationship = %Bolt.Sips.Types.Relationship{type: type}) do
+    repo_schema_module = type_to_repo_module(type)
+    repo_schema_module.row_to_struct(relationship)
+  end
+
+  def row_to_struct(node = %Bolt.Sips.Types.Node{labels: [type | _]}) do
+    repo_schema_module = type_to_repo_module(type)
+    repo_schema_module.row_to_struct(node)
+  end
+
+  def type_to_repo_module("MATERIAL_FOR") do
+    __MODULE__.MaterialFor
+  end
+
+  def type_to_repo_module(type) do
+    Module.concat([__MODULE__, type])
+  end
+
   ## Private Functions
 
   #code from http://michal.muskala.eu/2015/07/30/unix-timestamps-in-elixir.html
