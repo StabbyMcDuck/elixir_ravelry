@@ -1,7 +1,7 @@
 defmodule ElixirRavelryWeb.MaterialForControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{CardingCase, DyeingCase, MaterialForCase, WoolCase}
+  import ElixirRavelry.{RovingCase, DyedRovingCase, MaterialForCase, WoolCase}
 
   # Callbacks
 
@@ -27,20 +27,20 @@ defmodule ElixirRavelryWeb.MaterialForControllerTest do
 
   test "GET /api/v1/material-for with material-for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     wool = create_wool(bolt_sips_conn)
-    carding = create_carding(bolt_sips_conn)
+    roving = create_roving(bolt_sips_conn)
 
-    first_material_for = create_material_for(bolt_sips_conn, %{start_node_id: wool.id, end_node_id: carding.id})
+    first_material_for = create_material_for(bolt_sips_conn, %{start_node_id: wool.id, end_node_id: roving.id})
 
-    dyeing = create_dyeing(bolt_sips_conn)
+    dyed_roving = create_dyed_roving(bolt_sips_conn)
 
-    second_material_for = create_material_for(bolt_sips_conn, %{start_node_id: carding.id, end_node_id: dyeing.id})
+    second_material_for = create_material_for(bolt_sips_conn, %{start_node_id: roving.id, end_node_id: dyed_roving.id})
 
     conn = get conn, "/api/v1/material-for"
 
     assert material_fors = json_response(conn, 200)
     assert is_list(material_fors)
-    assert %{"id" => first_material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id, "type" => "MaterialFor"} in material_fors
-    assert %{"id" => second_material_for.id, "start_node_id" => carding.id, "end_node_id" => dyeing.id, "type" => "MaterialFor"} in material_fors
+    assert %{"id" => first_material_for.id, "start_node_id" => wool.id, "end_node_id" => roving.id, "type" => "MaterialFor"} in material_fors
+    assert %{"id" => second_material_for.id, "start_node_id" => roving.id, "end_node_id" => dyed_roving.id, "type" => "MaterialFor"} in material_fors
   end
 
   test "GET /api/v1/material-for/:id without material_for", %{conn: conn} do
@@ -50,11 +50,11 @@ defmodule ElixirRavelryWeb.MaterialForControllerTest do
 
   test "GET /api/v1/material-for/:id with material_for", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
     wool = create_wool(bolt_sips_conn)
-    carding = create_carding(bolt_sips_conn)
+    roving = create_roving(bolt_sips_conn)
 
-    material_for = create_material_for(bolt_sips_conn, %{start_node_id: wool.id, end_node_id: carding.id})
+    material_for = create_material_for(bolt_sips_conn, %{start_node_id: wool.id, end_node_id: roving.id})
 
     conn = get conn, "/api/v1/material-for/#{material_for.id}"
-    assert json_response(conn, 200) == %{"id" => material_for.id, "start_node_id" => wool.id, "end_node_id" => carding.id, "type" => "MaterialFor"}
+    assert json_response(conn, 200) == %{"id" => material_for.id, "start_node_id" => wool.id, "end_node_id" => roving.id, "type" => "MaterialFor"}
   end
 end

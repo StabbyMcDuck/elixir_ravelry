@@ -1,30 +1,30 @@
-defmodule ElixirRavelryWeb.DyeingController do
+defmodule ElixirRavelryWeb.DyedRovingController do
   use ElixirRavelryWeb, :controller
 
   alias ElixirRavelry.Repo
 
   def index(conn, _params) do
-    dyeing = conn
+    dyed_roving = conn
             |> bolt_sips_conn()
-            |> Repo.Dyeing.list()
-    json conn, dyeing
+            |> Repo.DyedRoving.list()
+    json conn, dyed_roving
   end
 
   def show(conn, %{"id"=>id}) do
     conn
       |> bolt_sips_conn()
-      |> Repo.Dyeing.get(id)
+      |> Repo.DyedRoving.get(id)
       |> case do
-           {:ok, dyeing} -> json conn, dyeing
+           {:ok, dyed_roving} -> json conn, dyed_roving
                           :error -> not_found(conn)
          end
   end
 
-  def graph(conn, params = %{"dyeing_id"=>id}) do
+  def graph(conn, params = %{"dyed_roving_id"=>id}) do
     direction = Map.get(params, "direction", "both")
     conn
     |> bolt_sips_conn()
-    |> Repo.Dyeing.graph(id, direction)
+    |> Repo.DyedRoving.graph(id, direction)
     |> case do
          {:ok, graph} -> json conn, graph
          :error -> not_found(conn)

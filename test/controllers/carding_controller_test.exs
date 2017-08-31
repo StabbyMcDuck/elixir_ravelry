@@ -1,7 +1,7 @@
-defmodule ElixirRavelryWeb.CardingControllerTest do
+defmodule ElixirRavelryWeb.RovingControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.CardingCase
+  import ElixirRavelry.RovingCase
 
   # Callbacks
 
@@ -20,25 +20,25 @@ defmodule ElixirRavelryWeb.CardingControllerTest do
 
   # Test
 
-  test "GET /api/v1/carding without carding", %{conn: conn} do
-    conn = get conn, "/api/v1/carding"
+  test "GET /api/v1/roving without roving", %{conn: conn} do
+    conn = get conn, "/api/v1/roving"
     assert json_response(conn, 200) == []
   end
 
-  test "GET /api/v1/carding with carding", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    carding = create_carding(bolt_sips_conn)
-    conn = get conn, "/api/v1/carding"
-    assert json_response(conn, 200) == [%{"id" => carding.id, "name" => carding.name, "type" => "Carding"}]
+  test "GET /api/v1/roving with roving", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    roving = create_roving(bolt_sips_conn)
+    conn = get conn, "/api/v1/roving"
+    assert json_response(conn, 200) == [%{"id" => roving.id, "name" => roving.name, "type" => "Roving"}]
   end
 
-  test "GET /api/v1/carding/:id without carding", %{conn: conn} do
-    conn = get conn, "/api/v1/carding/-1"
+  test "GET /api/v1/roving/:id without roving", %{conn: conn} do
+    conn = get conn, "/api/v1/roving/-1"
     assert json_response(conn, 404) == %{"error" => "Not Found"}
   end
 
-  test "GET /api/v1/carding/:id with carding", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    carding = create_carding(bolt_sips_conn)
-    conn = get conn, "/api/v1/carding/#{carding.id}"
-    assert json_response(conn, 200) == %{"id" => carding.id, "name" => carding.name, "type" => "Carding"}
+  test "GET /api/v1/roving/:id with roving", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    roving = create_roving(bolt_sips_conn)
+    conn = get conn, "/api/v1/roving/#{roving.id}"
+    assert json_response(conn, 200) == %{"id" => roving.id, "name" => roving.name, "type" => "Roving"}
   end
 end

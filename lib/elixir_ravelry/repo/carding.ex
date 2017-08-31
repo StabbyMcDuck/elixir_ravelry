@@ -1,13 +1,13 @@
-defmodule ElixirRavelry.Repo.Carding do
+defmodule ElixirRavelry.Repo.Roving do
   @moduledoc false
 
-  alias ElixirRavelryWeb.Carding
+  alias ElixirRavelryWeb.Roving
 
-  def create(conn, %Carding{name: name}) do
+  def create(conn, %Roving{name: name}) do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (c:Carding {name: {name}})
+         CREATE (c:Roving {name: {name}})
          RETURN c
          """,
          %{name: name}
@@ -20,7 +20,7 @@ defmodule ElixirRavelry.Repo.Carding do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (c:Carding)
+         MATCH (c:Roving)
          WHERE id(c) = toInteger({id})
          RETURN c
          """,
@@ -29,7 +29,7 @@ defmodule ElixirRavelry.Repo.Carding do
     |> return_to_list()
     |> case do
          [] -> :error
-         [carding] -> {:ok, carding}
+         [roving] -> {:ok, roving}
        end
   end
 
@@ -38,7 +38,7 @@ defmodule ElixirRavelry.Repo.Carding do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (c:Carding)
+         MATCH (c:Roving)
          RETURN c
          """
        )
@@ -46,10 +46,10 @@ defmodule ElixirRavelry.Repo.Carding do
   end
 
   def return_to_list(return) when is_list(return) do
-    Enum.map(return, &return_to_carding/1)
+    Enum.map(return, &return_to_roving/1)
   end
 
-  def return_to_carding(
+  def return_to_roving(
         %{
           "c" => node
         }
@@ -60,15 +60,15 @@ defmodule ElixirRavelry.Repo.Carding do
   def row_to_struct(
         %Bolt.Sips.Types.Node{
           id: id,
-          labels: ["Carding"],
+          labels: ["Roving"],
           properties: %{
             "name" => name
           }
         }
       ) do
-    %Carding{
+    %Roving{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "Carding"},
+        source: {nil, "Roving"},
         state: :loaded
       },
       id: id,

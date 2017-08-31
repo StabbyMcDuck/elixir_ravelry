@@ -1,14 +1,14 @@
-defmodule ElixirRavelry.Repo.Dyeing do
+defmodule ElixirRavelry.Repo.DyedRoving do
   @moduledoc false
 
-  alias ElixirRavelryWeb.Dyeing
+  alias ElixirRavelryWeb.DyedRoving
   alias ElixirRavelry.Repo
 
-  def create(conn, %Dyeing{name: name}) do
+  def create(conn, %DyedRoving{name: name}) do
     conn
     |> Bolt.Sips.query!(
          """
-         CREATE (d:Dyeing {name: {name}})
+         CREATE (d:DyedRoving {name: {name}})
          RETURN d
          """,
          %{name: name}
@@ -21,7 +21,7 @@ defmodule ElixirRavelry.Repo.Dyeing do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (d:Dyeing)
+         MATCH (d:DyedRoving)
          WHERE id(d) = toInteger({id})
          RETURN d
          """,
@@ -30,7 +30,7 @@ defmodule ElixirRavelry.Repo.Dyeing do
     |> return_to_list()
     |> case do
          [] -> :error
-         [dyeing] -> {:ok, dyeing}
+         [dyedRoving] -> {:ok, dyedRoving}
        end
   end
 
@@ -84,32 +84,11 @@ defmodule ElixirRavelry.Repo.Dyeing do
     """
   end
 
-  defp graph_unwind("backwards") do
-    """
-    UNWIND backwards_nodes AS backwards_node
-    UNWIND backwards_rels AS backwards_rel
-    """
-  end
-
-  defp graph_unwind("both") do
-    """
-    #{graph_unwind("backwards")}
-    #{graph_unwind("forward")}
-    """
-  end
-
-  defp graph_unwind("forward") do
-    """
-    UNWIND forward_nodes AS forward_node
-    UNWIND forward_rels AS forward_rel
-    """
-  end
-
   def graph(conn, id, direction) do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (d:Dyeing)
+         MATCH (d:DyedRoving)
          WHERE id(d) = toInteger({id})
          #{backwards_optional_match(direction)}
          #{forward_optional_match(direction)}
@@ -138,7 +117,7 @@ defmodule ElixirRavelry.Repo.Dyeing do
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (d:Dyeing)
+         MATCH (d:DyedRoving)
          RETURN d
          """
        )
@@ -146,10 +125,10 @@ defmodule ElixirRavelry.Repo.Dyeing do
   end
 
   def return_to_list(return) when is_list(return) do
-    Enum.map(return, &return_to_dyeing/1)
+    Enum.map(return, &return_to_dyed_roving/1)
   end
 
-  def return_to_dyeing(
+  def return_to_dyed_roving(
         %{
           "d" => node
         }
@@ -160,15 +139,15 @@ defmodule ElixirRavelry.Repo.Dyeing do
   def row_to_struct(
         %Bolt.Sips.Types.Node{
           id: id,
-          labels: ["Dyeing"],
+          labels: ["DyedRoving"],
           properties: %{
             "name" => name
           }
         }
       ) do
-    %Dyeing{
+    %DyedRoving{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "Dyeing"},
+        source: {nil, "DyedRoving"},
         state: :loaded
       },
       id: id,

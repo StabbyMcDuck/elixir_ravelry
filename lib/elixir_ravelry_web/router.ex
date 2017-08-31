@@ -10,9 +10,9 @@ defmodule ElixirRavelryWeb.Router do
     pipe_through :api
 
     resources "/cards", CardsController, only: ~w(index show)a
-    resources "/carding", CardingController, only: ~w(index show)a
-    resources "/dyeing", DyeingController, only: ~w(index show)a do
-      get "/graph", DyeingController, :graph
+    resources "/roving", RovingController, only: ~w(index show)a
+    resources "/dyed_roving", DyedRovingController, only: ~w(index show)a do
+      get "/graph", DyedRovingController, :graph
     end
     resources "/material-for", MaterialForController, only: ~w(index show)a
     resources "/owns", OwnsController, only: ~w(index show)a

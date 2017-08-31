@@ -1,8 +1,8 @@
-defmodule ElixirRavelry.CardingCase do
+defmodule ElixirRavelry.RovingCase do
   alias ElixirRavelry.Repo
-  alias ElixirRavelryWeb.Carding
+  alias ElixirRavelryWeb.Roving
 
-  def create_carding(bolt_sips_conn) do
-    Repo.Carding.create(bolt_sips_conn, %Carding{name: Faker.Name.name()})
+  def create_roving(bolt_sips_conn) do
+    Repo.Roving.create(bolt_sips_conn, %Roving{name: Faker.Name.name()})
   end
 end

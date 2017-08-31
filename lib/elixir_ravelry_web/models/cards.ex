@@ -1,16 +1,16 @@
 defmodule ElixirRavelryWeb.Cards do
   use ElixirRavelryWeb, :model
 
-  alias ElixirRavelryWeb.{User, Carding}
+  alias ElixirRavelryWeb.{User, Roving}
 
   schema "cards" do
     belongs_to :user, User
-    belongs_to :carding, Carding
+    belongs_to :roving, Roving
   end
 
   defimpl Poison.Encoder do
-    def encode(%{id: id, carding_id: carding_id, user_id: user_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, carding_id: carding_id, user_id: user_id}, options)
+    def encode(%{id: id, roving_id: roving_id, user_id: user_id}, options) do
+      Poison.Encoder.Map.encode(%{id: id, roving_id: roving_id, user_id: user_id}, options)
     end
   end
 

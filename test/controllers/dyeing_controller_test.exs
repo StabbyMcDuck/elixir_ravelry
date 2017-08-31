@@ -1,7 +1,7 @@
-defmodule ElixirRavelryWeb.DyeingControllerTest do
+defmodule ElixirRavelryWeb.DyedRovingControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.DyeingCase
+  import ElixirRavelry.DyedRovingCase
 
   # Callbacks
 
@@ -20,125 +20,125 @@ defmodule ElixirRavelryWeb.DyeingControllerTest do
 
   # Test
 
-  test "GET /api/v1/dyeing without dyeing", %{conn: conn} do
-    conn = get conn, "/api/v1/dyeing"
+  test "GET /api/v1/dyed_roving without dyed_roving", %{conn: conn} do
+    conn = get conn, "/api/v1/dyed_roving"
     assert json_response(conn, 200) == []
   end
 
-  test "GET /api/v1/dyeing with dyeing", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    dyeing = create_dyeing(bolt_sips_conn)
-    conn = get conn, "/api/v1/dyeing"
-    assert json_response(conn, 200) == [%{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"}]
+  test "GET /api/v1/dyed_roving with dyed_roving", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    dyed_roving = create_dyed_roving(bolt_sips_conn)
+    conn = get conn, "/api/v1/dyed_roving"
+    assert json_response(conn, 200) == [%{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"}]
   end
 
-  test "GET /api/v1/dyeing/:id without dyeing", %{conn: conn} do
-    conn = get conn, "/api/v1/dyeing/-1"
+  test "GET /api/v1/dyed_roving/:id without dyed_roving", %{conn: conn} do
+    conn = get conn, "/api/v1/dyed_roving/-1"
     assert json_response(conn, 404) == %{"error" => "Not Found"}
   end
 
-  test "GET /api/v1/dyeing/:id with dyeing", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    dyeing = create_dyeing(bolt_sips_conn)
-    conn = get conn, "/api/v1/dyeing/#{dyeing.id}"
-    assert json_response(conn, 200) == %{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"}
+  test "GET /api/v1/dyed_roving/:id with dyed_roving", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    dyed_roving = create_dyed_roving(bolt_sips_conn)
+    conn = get conn, "/api/v1/dyed_roving/#{dyed_roving.id}"
+    assert json_response(conn, 200) == %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"}
   end
 
-  describe "GET /api/v1/dyeing/:dyeing_id/graph" do
-    test "Without dyeing", %{conn: conn} do
-      conn = get conn, "/api/v1/dyeing/-1/graph"
+  describe "GET /api/v1/dyed_roving/:dyed_roving_id/graph" do
+    test "Without dyed_roving", %{conn: conn} do
+      conn = get conn, "/api/v1/dyed_roving/-1/graph"
       assert json_response(conn, 404) == %{"error" => "Not Found"}
     end
 
-    test "With dyeing", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    test "With dyed_roving", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
       %{
-        carding: carding,
-        carding_material_for_dyeing: carding_material_for_dyeing,
-        dyeing: dyeing,
+        roving: roving,
+        roving_material_for_dyed_roving: roving_material_for_dyed_roving,
+        dyed_roving: dyed_roving,
         wool: wool,
-        wool_material_for_carding: wool_material_for_carding
-      } = create_connected_dyeing(bolt_sips_conn)
-      conn = get conn, "/api/v1/dyeing/#{dyeing.id}/graph"
+        wool_material_for_roving: wool_material_for_roving
+      } = create_connected_dyed_roving(bolt_sips_conn)
+      conn = get conn, "/api/v1/dyed_roving/#{dyed_roving.id}/graph"
       assert list = json_response(conn, 200)
       assert is_list(list)
       assert %{
-               "end_node_id" => carding_material_for_dyeing.end_node_id,
-               "id" => carding_material_for_dyeing.id,
-               "start_node_id" => carding_material_for_dyeing.start_node_id,
+               "end_node_id" => roving_material_for_dyed_roving.end_node_id,
+               "id" => roving_material_for_dyed_roving.id,
+               "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
       assert %{
-               "end_node_id" => wool_material_for_carding.end_node_id,
-               "id" => wool_material_for_carding.id,
-               "start_node_id" => wool_material_for_carding.start_node_id,
+               "end_node_id" => wool_material_for_roving.end_node_id,
+               "id" => wool_material_for_roving.id,
+               "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
-      assert %{"id" => carding.id, "name" => carding.name, "type" => "Carding"} in list
-      assert %{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
       assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
     end
 
-    test "With dyeing forward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    test "With dyed_roving forward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
       %{
-        dyeing: dyeing,
-      } = create_connected_dyeing(bolt_sips_conn)
-      conn = get conn, "/api/v1/dyeing/#{dyeing.id}/graph", %{"direction" => "forward"}
+        dyed_roving: dyed_roving,
+      } = create_connected_dyed_roving(bolt_sips_conn)
+      conn = get conn, "/api/v1/dyed_roving/#{dyed_roving.id}/graph", %{"direction" => "forward"}
       assert list = json_response(conn, 200)
       assert is_list(list)
-      assert %{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
     end
 
-    test "With dyeing backward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    test "With dyed_roving backward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
       %{
-        carding: carding,
-        carding_material_for_dyeing: carding_material_for_dyeing,
-        dyeing: dyeing,
+        roving: roving,
+        roving_material_for_dyed_roving: roving_material_for_dyed_roving,
+        dyed_roving: dyed_roving,
         wool: wool,
-        wool_material_for_carding: wool_material_for_carding
-      } = create_connected_dyeing(bolt_sips_conn)
-      conn = get conn, "/api/v1/dyeing/#{dyeing.id}/graph", %{"direction" => "backwards"}
+        wool_material_for_roving: wool_material_for_roving
+      } = create_connected_dyed_roving(bolt_sips_conn)
+      conn = get conn, "/api/v1/dyed_roving/#{dyed_roving.id}/graph", %{"direction" => "backwards"}
       assert list = json_response(conn, 200)
       assert is_list(list)
       assert %{
-               "end_node_id" => carding_material_for_dyeing.end_node_id,
-               "id" => carding_material_for_dyeing.id,
-               "start_node_id" => carding_material_for_dyeing.start_node_id,
+               "end_node_id" => roving_material_for_dyed_roving.end_node_id,
+               "id" => roving_material_for_dyed_roving.id,
+               "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
       assert %{
-               "end_node_id" => wool_material_for_carding.end_node_id,
-               "id" => wool_material_for_carding.id,
-               "start_node_id" => wool_material_for_carding.start_node_id,
+               "end_node_id" => wool_material_for_roving.end_node_id,
+               "id" => wool_material_for_roving.id,
+               "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
-      assert %{"id" => carding.id, "name" => carding.name, "type" => "Carding"} in list
-      assert %{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
       assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
     end
 
-    test "With dyeing both", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+    test "With dyed_roving both", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
       %{
-        carding: carding,
-        carding_material_for_dyeing: carding_material_for_dyeing,
-        dyeing: dyeing,
+        roving: roving,
+        roving_material_for_dyed_roving: roving_material_for_dyed_roving,
+        dyed_roving: dyed_roving,
         wool: wool,
-        wool_material_for_carding: wool_material_for_carding
-      } = create_connected_dyeing(bolt_sips_conn)
-      conn = get conn, "/api/v1/dyeing/#{dyeing.id}/graph", %{"direction" => "both"}
+        wool_material_for_roving: wool_material_for_roving
+      } = create_connected_dyed_roving(bolt_sips_conn)
+      conn = get conn, "/api/v1/dyed_roving/#{dyed_roving.id}/graph", %{"direction" => "both"}
       assert list = json_response(conn, 200)
       assert is_list(list)
       assert %{
-               "end_node_id" => carding_material_for_dyeing.end_node_id,
-               "id" => carding_material_for_dyeing.id,
-               "start_node_id" => carding_material_for_dyeing.start_node_id,
+               "end_node_id" => roving_material_for_dyed_roving.end_node_id,
+               "id" => roving_material_for_dyed_roving.id,
+               "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
       assert %{
-               "end_node_id" => wool_material_for_carding.end_node_id,
-               "id" => wool_material_for_carding.id,
-               "start_node_id" => wool_material_for_carding.start_node_id,
+               "end_node_id" => wool_material_for_roving.end_node_id,
+               "id" => wool_material_for_roving.id,
+               "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
              } in list
-      assert %{"id" => carding.id, "name" => carding.name, "type" => "Carding"} in list
-      assert %{"id" => dyeing.id, "name" => dyeing.name, "type" => "Dyeing"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
       assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
     end
   end

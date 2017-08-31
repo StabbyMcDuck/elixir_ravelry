@@ -1,9 +1,9 @@
-defmodule ElixirRavelryWeb.Carding do
+defmodule ElixirRavelryWeb.Roving do
   use ElixirRavelryWeb, :model
 
   alias ElixirRavelryWeb.{Owns, MaterialFor, Cards}
 
-  schema "carding" do
+  schema "roving" do
     field :name, :string
 
     has_one :cards, Cards
@@ -15,7 +15,7 @@ defmodule ElixirRavelryWeb.Carding do
 
   defimpl Poison.Encoder do
     def encode(%{name: name, id: id}, options) do
-      Poison.Encoder.Map.encode(%{name: name, id: id, type: "Carding"}, options)
+      Poison.Encoder.Map.encode(%{name: name, id: id, type: "Roving"}, options)
     end
   end
 end

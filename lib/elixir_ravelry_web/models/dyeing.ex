@@ -1,9 +1,9 @@
-defmodule ElixirRavelryWeb.Dyeing do
+defmodule ElixirRavelryWeb.DyedRoving do
   use ElixirRavelryWeb, :model
 
   alias ElixirRavelryWeb.{Owns, MaterialFor, Dyes}
 
-  schema "dyeing" do
+  schema "dyed_roving" do
     field :name, :string
 
     has_one :dyes, Dyes
@@ -15,7 +15,7 @@ defmodule ElixirRavelryWeb.Dyeing do
 
   defimpl Poison.Encoder do
     def encode(%{name: name, id: id}, options) do
-      Poison.Encoder.Map.encode(%{name: name, id: id, type: "Dyeing"}, options)
+      Poison.Encoder.Map.encode(%{name: name, id: id, type: "DyedRoving"}, options)
     end
   end
 end
