@@ -27,6 +27,27 @@ defmodule ElixirRavelry.Repo do
     Module.concat([__MODULE__, type])
   end
 
+  def create_relationship(conn, options = %{type: type}) do
+    query_options = Map.delete(options, :type)
+    properties = Map.drop(query_options, [:end_node_id, :start_node_id])
+    property_cypher_fields = Enum.map_join(properties, ", ", fn {key, _} ->
+      "#{key}: {#{key}}"
+    end)
+    property_cypher = "{#{property_cypher_fields}}"
+    conn
+    |> Bolt.Sips.query!(
+         """
+         MATCH (e) WHERE id(e) = {end_node_id}
+         MATCH (s) WHERE id(s) = {start_node_id}
+         CREATE (s)-[r:#{type}#{property_cypher}]->(e)
+         RETURN r
+         """,
+         query_options
+       )
+    |> return_to_list()
+    |> hd()
+  end
+
   def get_node(conn, type, id) do
     conn
     |> Bolt.Sips.query!(

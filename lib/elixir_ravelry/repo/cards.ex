@@ -5,18 +5,8 @@ defmodule ElixirRavelry.Repo.Cards do
   alias ElixirRavelry.Repo
 
   def create(conn, %Cards{user_id: user_id, roving_id: roving_id}) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (u:User) WHERE id(u) = {user_id}
-         MATCH (l:Roving) WHERE id(l) = {roving_id}
-         CREATE (u)-[r:CARDS]->(l)
-         RETURN r
-         """,
-         %{user_id: user_id, roving_id: roving_id}
-       )
-    |> return_to_cards_list()
-    |> hd()
+    Repo.create_relationship(conn, %{type: "CARDS", end_node_id: roving_id, start_node_id: user_id})
+
   end
 
   def get(conn, id) do

@@ -5,18 +5,7 @@ defmodule ElixirRavelry.Repo.Owns do
   alias ElixirRavelry.Repo
 
   def create(conn, %Owns{started_at: started_at, user_id: user_id, wool_id: wool_id}) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (u:User) WHERE id(u) = {user_id}
-         MATCH (w:Wool) WHERE id(w) = {wool_id}
-         CREATE (u)-[r:OWNS{started_at: {started_at}}]->(w)
-         RETURN r
-         """,
-         %{started_at: Repo.to_timestamp(started_at), user_id: user_id, wool_id: wool_id}
-       )
-    |> return_to_owns_list()
-    |> hd()
+    Repo.create_relationship(conn, %{type: "OWNS", end_node_id: wool_id, start_node_id: user_id, started_at: Repo.to_timestamp(started_at)})
   end
 
   def get(conn, id) do

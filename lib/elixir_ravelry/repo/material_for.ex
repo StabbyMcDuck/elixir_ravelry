@@ -5,18 +5,7 @@ defmodule ElixirRavelry.Repo.MaterialFor do
   alias ElixirRavelry.Repo
 
   def create(conn, %MaterialFor{end_node_id: end_node_id, start_node_id: start_node_id}) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (e) WHERE id(e) = {end_node_id}
-         MATCH (s) WHERE id(s) = {start_node_id}
-         CREATE (s)-[r:MATERIAL_FOR]->(e)
-         RETURN r
-         """,
-         %{end_node_id: end_node_id, start_node_id: start_node_id}
-       )
-    |> return_to_material_for_list()
-    |> hd()
+    Repo.create_relationship(conn, %{type: "MATERIAL_FOR", end_node_id: end_node_id, start_node_id: start_node_id})
   end
 
   def get(conn, id) do
