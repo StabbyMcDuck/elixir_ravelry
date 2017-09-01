@@ -4,26 +4,21 @@ defmodule ElixirRavelry.Repo.DyedRoving do
   alias ElixirRavelryWeb.DyedRoving
   alias ElixirRavelry.Repo
 
+  # Macros
+
+  defmacro type, do: "DyedRoving"
+  use ElixirRavelry.Repo.Node
+
+  # Functions
+
   def create(conn, %DyedRoving{name: name}) do
-    Repo.create_node(conn, %{type: "DyedRoving", name: name})
-  end
-
-  def get(conn, id) do
-    Repo.get_node(conn, "DyedRoving", id)
-  end
-
-  def graph(conn, id, direction) do
-    Repo.graph(conn, "DyedRoving", id, direction)
-  end
-
-  def list(conn) do
-    Repo.list_node(conn, "DyedRoving")
+    Repo.create_node(conn, %{type: type(), name: name})
   end
 
   def row_to_struct(
         %Bolt.Sips.Types.Node{
           id: id,
-          labels: ["DyedRoving"],
+          labels: [type()],
           properties: %{
             "name" => name
           }
@@ -31,7 +26,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
       ) do
     %DyedRoving{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "DyedRoving"},
+        source: {nil, type()},
         state: :loaded
       },
       id: id,

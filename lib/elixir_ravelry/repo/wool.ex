@@ -4,22 +4,21 @@ defmodule ElixirRavelry.Repo.Wool do
   alias ElixirRavelryWeb.Wool
   alias ElixirRavelry.Repo
 
+  # Macros
+
+  defmacro type, do: "Wool"
+  use ElixirRavelry.Repo.Node
+
+  #Functions
+
   def create(conn, %Wool{name: name}) do
-    Repo.create_node(conn, %{type: "Wool", name: name})
-  end
-
-  def get(conn, id) do
-    Repo.get_node(conn, "Wool", id)
-  end
-
-  def list(conn) do
-    Repo.list_node(conn, "Wool")
+    Repo.create_node(conn, %{type: type(), name: name})
   end
 
   def row_to_struct(
         %Bolt.Sips.Types.Node{
           id: id,
-          labels: ["Wool"],
+          labels: [type()],
           properties: %{
             "name" => name
           }
@@ -27,7 +26,7 @@ defmodule ElixirRavelry.Repo.Wool do
       ) do
     %Wool{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "Wool"},
+        source: {nil, type()},
         state: :loaded
       },
       id: id,

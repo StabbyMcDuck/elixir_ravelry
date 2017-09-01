@@ -4,22 +4,21 @@ defmodule ElixirRavelry.Repo.User do
   alias ElixirRavelryWeb.User
   alias ElixirRavelry.Repo
 
+  # Macros
+
+  defmacro type, do: "User"
+  use ElixirRavelry.Repo.Node
+
+  # Function
+
   def create(conn, %User{name: name}) do
-    Repo.create_node(conn, %{type: "User", name: name})
-  end
-
-  def get(conn, id) do
-    Repo.get_node(conn, "User", id)
-  end
-
-  def list(conn) do
-    Repo.list_node(conn, "User")
+    Repo.create_node(conn, %{type: type(), name: name})
   end
 
   def row_to_struct(
         %Bolt.Sips.Types.Node{
           id: id,
-          labels: ["User"],
+          labels: [type()],
           properties: %{
             "name" => name
           }
@@ -28,7 +27,7 @@ defmodule ElixirRavelry.Repo.User do
       ) do
     %User{
       __meta__: %Ecto.Schema.Metadata{
-        source: {nil, "User"},
+        source: {nil, type()},
         state: :loaded
       },
       id: id,
