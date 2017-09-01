@@ -16,14 +16,6 @@ defmodule ElixirRavelry.Repo.MaterialFor do
     Repo.list_relationship(conn, "MATERIAL_FOR")
   end
 
-  def return_to_material_for_list(return) when is_list(return) do
-    Enum.map(return, &return_to_material_for/1)
-  end
-
-  def return_to_material_for(%{"r" => relationship}) do
-    row_to_struct(relationship)
-  end
-
   def row_to_struct(%Bolt.Sips.Types.Relationship{"end": end_node_id, id: id, start: start_node_id, type: "MATERIAL_FOR"}) do
     %MaterialFor{
       __meta__: %Ecto.Schema.Metadata{

@@ -16,14 +16,6 @@ defmodule ElixirRavelry.Repo.Owns do
     Repo.list_relationship(conn, "OWNS")
   end
 
-  def return_to_owns_list(return) when is_list(return) do
-    Enum.map(return, &return_to_owns/1)
-  end
-
-  def return_to_owns(%{"r" => relationship}) do
-    row_to_struct(relationship)
-  end
-
   def row_to_struct(%Bolt.Sips.Types.Relationship{"end": wool_id, id: id, properties: %{"started_at" => started_at_timestamp}, start: user_id, type: "OWNS"}) do
     %Owns{
       __meta__: %Ecto.Schema.Metadata{
