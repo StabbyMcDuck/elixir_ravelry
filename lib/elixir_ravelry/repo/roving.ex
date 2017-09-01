@@ -5,16 +5,7 @@ defmodule ElixirRavelry.Repo.Roving do
   alias ElixirRavelry.Repo
 
   def create(conn, %Roving{name: name}) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         CREATE (n:Roving {name: {name}})
-         RETURN n
-         """,
-         %{name: name}
-       )
-    |> return_to_list()
-    |> hd()
+    Repo.create_node(conn, %{type: "Roving", name: name})
   end
 
   def get(conn, id) do

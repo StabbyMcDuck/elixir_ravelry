@@ -30,10 +30,7 @@ defmodule ElixirRavelry.Repo do
   def create_relationship(conn, options = %{type: type}) do
     query_options = Map.delete(options, :type)
     properties = Map.drop(query_options, [:end_node_id, :start_node_id])
-    property_cypher_fields = Enum.map_join(properties, ", ", fn {key, _} ->
-      "#{key}: {#{key}}"
-    end)
-    property_cypher = "{#{property_cypher_fields}}"
+    property_cypher = property_cypher(properties)
     conn
     |> Bolt.Sips.query!(
          """
@@ -41,6 +38,28 @@ defmodule ElixirRavelry.Repo do
          MATCH (s) WHERE id(s) = {start_node_id}
          CREATE (s)-[r:#{type}#{property_cypher}]->(e)
          RETURN r
+         """,
+         query_options
+       )
+    |> return_to_list()
+    |> hd()
+  end
+
+  defp property_cypher(properties) do
+    property_cypher_fields = Enum.map_join(properties, ", ", fn {key, _} ->
+      "#{key}: {#{key}}"
+    end)
+    "{#{property_cypher_fields}}"
+  end
+
+  def create_node(conn, options = %{type: type}) do
+    query_options = Map.delete(options, :type)
+    property_cypher = property_cypher(query_options)
+    conn
+    |> Bolt.Sips.query!(
+         """
+         CREATE (n:#{type}#{property_cypher})
+         RETURN n
          """,
          query_options
        )

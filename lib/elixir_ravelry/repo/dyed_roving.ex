@@ -5,16 +5,7 @@ defmodule ElixirRavelry.Repo.DyedRoving do
   alias ElixirRavelry.Repo
 
   def create(conn, %DyedRoving{name: name}) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         CREATE (n:DyedRoving {name: {name}})
-         RETURN n
-         """,
-         %{name: name}
-       )
-    |> return_to_list()
-    |> hd()
+    Repo.create_node(conn, %{type: "DyedRoving", name: name})
   end
 
   def get(conn, id) do
@@ -102,18 +93,6 @@ defmodule ElixirRavelry.Repo.DyedRoving do
 
   def list(conn) do
     Repo.list_node(conn, "DyedRoving")
-  end
-
-  def return_to_list(return) when is_list(return) do
-    Enum.map(return, &return_to_dyed_roving/1)
-  end
-
-  def return_to_dyed_roving(
-        %{
-          "n" => node
-        }
-      ) do
-    row_to_struct(node)
   end
 
   def row_to_struct(

@@ -6,7 +6,6 @@ defmodule ElixirRavelry.Repo.Cards do
 
   def create(conn, %Cards{user_id: user_id, roving_id: roving_id}) do
     Repo.create_relationship(conn, %{type: "CARDS", end_node_id: roving_id, start_node_id: user_id})
-
   end
 
   def get(conn, id) do
