@@ -1,7 +1,8 @@
 defmodule ElixirRavelry.Repo.Cards do
   @moduledoc false
 
-  alias ElixirRavelryWeb.{Cards}
+  alias ElixirRavelryWeb.Cards
+  alias ElixirRavelry.Repo
 
   def create(conn, %Cards{user_id: user_id, roving_id: roving_id}) do
     conn
@@ -9,8 +10,8 @@ defmodule ElixirRavelry.Repo.Cards do
          """
          MATCH (u:User) WHERE id(u) = {user_id}
          MATCH (l:Roving) WHERE id(l) = {roving_id}
-         CREATE (u)-[c:CARDS]->(l)
-         RETURN c
+         CREATE (u)-[r:CARDS]->(l)
+         RETURN r
          """,
          %{user_id: user_id, roving_id: roving_id}
        )
@@ -19,38 +20,22 @@ defmodule ElixirRavelry.Repo.Cards do
   end
 
   def get(conn, id) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (:User)-[c:CARDS]->(:Roving)
-         WHERE id(c) = toInteger({id})
-         RETURN c
-         """,
-         %{id: id}
-       )
-    |> return_to_cards_list()
-    |> case do
-         [] -> :error
-         [cards] -> {:ok, cards}
-       end
+    Repo.get_relationship(conn, "CARDS", id)
   end
 
   def list(conn) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (:User)-[c:CARDS]->(:Roving)
-         RETURN c
-         """
-       )
-    |> return_to_cards_list()
+    Repo.list_relationship(conn, "CARDS")
   end
 
   def return_to_cards_list(return) when is_list(return) do
     Enum.map(return, &return_to_cards/1)
   end
 
-  def return_to_cards(%{"c" => %Bolt.Sips.Types.Relationship{"end": roving_id, id: id, start: user_id, type: "CARDS"}}) do
+  def return_to_cards(%{"r" => relationship}) do
+    row_to_struct(relationship)
+  end
+
+  def row_to_struct(%Bolt.Sips.Types.Relationship{"end": roving_id, id: id, start: user_id, type: "CARDS"}) do
     %Cards{
       __meta__: %Ecto.Schema.Metadata{
         source: {nil, "Cards"},

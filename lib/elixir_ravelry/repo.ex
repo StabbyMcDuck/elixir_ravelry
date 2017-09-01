@@ -19,6 +19,10 @@ defmodule ElixirRavelry.Repo do
     __MODULE__.Owns
   end
 
+  def type_to_repo_module("CARDS") do
+    __MODULE__.Cards
+  end
+
   def type_to_repo_module(type) do
     Module.concat([__MODULE__, type])
   end
