@@ -12,83 +12,8 @@ defmodule ElixirRavelry.Repo.DyedRoving do
     Repo.get_node(conn, "DyedRoving", id)
   end
 
-  defp backwards_optional_match(direction) when direction in ~w(backwards both) do
-    """
-    OPTIONAL MATCH backwards = (source)-[backwards_relationship*0..]->(d)
-    """
-  end
-
-  defp backwards_optional_match("forward") do
-    ""
-  end
-
-  defp forward_optional_match(direction) when direction in ~w(forward both) do
-    """
-    OPTIONAL MATCH forward = (d)-[forward_relationship*0..]->(sink)
-    """
-  end
-
-  defp forward_optional_match("backwards") do
-    ""
-  end
-
-  defp graph_return("backwards") do
-    "source_nodes, backwards_rels"
-  end
-
-  defp graph_return("both") do
-    "#{graph_return("forward")}, #{graph_return("backwards")}"
-  end
-
-  defp graph_return("forward") do
-    "sink_nodes, forward_rels"
-  end
-
-  defp graph_with("backwards") do
-    """
-    collect(DISTINCT source) as source_nodes,
-    collect(DISTINCT head(backwards_relationship)) as backwards_rels
-    """
-  end
-
-  defp graph_with("both") do
-    "#{graph_with("forward")}, #{graph_with("backwards")}"
-  end
-
-  defp graph_with("forward") do
-    """
-    collect(DISTINCT sink) as sink_nodes,
-    collect(DISTINCT last(forward_relationship)) as forward_rels
-    """
-  end
-
   def graph(conn, id, direction) do
-    conn
-    |> Bolt.Sips.query!(
-         """
-         MATCH (d:DyedRoving)
-         WHERE id(d) = toInteger({id})
-         #{backwards_optional_match(direction)}
-         #{forward_optional_match(direction)}
-         WITH #{graph_with(direction)}
-         RETURN #{graph_return(direction)}
-         """,
-         %{id: id}
-       )
-    |> graph_return_to_list()
-  end
-
-  def graph_return_to_list([map]) when is_map(map) do
-    map
-    |> Enum.flat_map(
-      fn {_, value} when is_list(value) ->
-        Enum.map(value, &Repo.row_to_struct/1)
-      end
-    )
-    |> case do
-        [] -> :error
-        list -> {:ok, list}
-       end
+    Repo.graph(conn, "DyedRoving", id, direction)
   end
 
   def list(conn) do
