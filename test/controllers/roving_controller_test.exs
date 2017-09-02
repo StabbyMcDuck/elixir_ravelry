@@ -1,25 +1,10 @@
 defmodule ElixirRavelryWeb.RovingControllerTest do
   use ElixirRavelryWeb.ConnCase
-
+  use ElixirRavelry.Neo4jConnCase
+  
   import ElixirRavelry.RovingCase
 
-  # Callbacks
-
-  setup %{conn: conn} do
-    bolt_sips_conn = Bolt.Sips.conn()
-                     |> Bolt.Sips.begin()
-
-    on_exit fn ->
-      Bolt.Sips.rollback(bolt_sips_conn)
-    end
-
-    conn = Plug.Conn.put_private(conn, :bolt_sips_conn, bolt_sips_conn)
-
-    %{bolt_sips_conn: bolt_sips_conn, conn: conn}
-  end
-
   # Test
-
   test "GET /api/v1/roving without roving", %{conn: conn} do
     conn = get conn, "/api/v1/roving"
     assert json_response(conn, 200) == []
