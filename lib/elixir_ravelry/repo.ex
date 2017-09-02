@@ -145,7 +145,6 @@ defmodule ElixirRavelry.Repo do
          WITH #{graph_with(direction)}
          RETURN #{graph_return(direction)}
          """
-        |> (fn c -> IO.puts(c) ; c end).(),
          %{id: id}
        )
     |> graph_return_to_list()
