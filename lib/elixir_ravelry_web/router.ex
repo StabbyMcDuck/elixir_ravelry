@@ -17,6 +17,7 @@ defmodule ElixirRavelryWeb.Router do
     resources "/dyes", DyesController, only: ~w(index show)a
     resources "/material-for", MaterialForController, only: ~w(index show)a
     resources "/owns", OwnsController, only: ~w(index show)a
+    resources "/spins", SpinsController, only: ~w(index show)a
     resources "/users", UserController, only: ~w(index show)a
     resources "/wool", WoolController, only: ~w(index show)a
     resources "/yarn", YarnController, only: ~w(index show)a do

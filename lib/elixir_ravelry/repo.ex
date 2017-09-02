@@ -27,6 +27,10 @@ defmodule ElixirRavelry.Repo do
     __MODULE__.Dyes
   end
 
+  def type_to_repo_module("SPINS") do
+    __MODULE__.Spins
+  end
+
   def type_to_repo_module(type) do
     Module.concat([__MODULE__, type])
   end

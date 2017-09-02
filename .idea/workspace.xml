@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c64a07f8-d916-47b2-b171-f1c0c8a17690" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/dyes.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/yarn.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/dyes_controller.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/yarn_controller.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/dyes.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/knits.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/project.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/spins.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/yarn.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/dyes_controller_test.exs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/yarn_controller_test.exs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/dyes_case.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/yarn_case.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/spins.ex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/spins_controller.ex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" />
     </list>
     <ignored path="$PROJECT_DIR$/_build/dev/lib/elixirravelry/ebin/" />
@@ -45,11 +32,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="dyes_controller_test.exs" pinned="false" current-in-tab="true">
+          <file leaf-file-name="dyes_controller_test.exs" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+                <state relative-caret-position="0">
+                  <caret line="0" column="48" lean-forward="true" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="48" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="spins_controller.ex" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/spins_controller.ex">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
                   <folding />
                 </state>
               </provider>
@@ -125,16 +122,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="yarn_case.ex" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test/support/yarn_case.ex">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
         </leaf>
       </split-first>
       <split-second>
@@ -179,11 +166,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="router.ex" pinned="false" current-in-tab="true">
+          <file leaf-file-name="router.ex" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="60" lean-forward="false" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+                <state relative-caret-position="285">
+                  <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="spins.ex" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/spins.ex">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="270">
+                  <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
@@ -229,9 +226,9 @@
       <find>dyed_roving</find>
       <find>Owns</find>
       <find>owns</find>
-      <find>Wool</find>
       <find>wool</find>
       <find>started</find>
+      <find>Wool</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -275,8 +272,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/material_for_controller.ex" />
-        <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/models/node.ex" />
         <option value="$PROJECT_DIR$/test/support/material_for_case.ex" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/models/material_for.ex" />
@@ -324,8 +319,10 @@
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
         <option value="$PROJECT_DIR$/test/support/dyes_case.ex" />
         <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/dyes.ex" />
-        <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" />
         <option value="$PROJECT_DIR$/test/controllers/dyes_controller_test.exs" />
+        <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/spins_controller.ex" />
+        <option value="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" />
+        <option value="$PROJECT_DIR$/lib/elixir_ravelry/repo/spins.ex" />
       </list>
     </option>
   </component>
@@ -440,10 +437,10 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/test/support" />
-      <recent name="$PROJECT_DIR$/test/controllers" />
       <recent name="$PROJECT_DIR$/lib/elixir_ravelry/repo" />
       <recent name="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers" />
+      <recent name="$PROJECT_DIR$/test/support" />
+      <recent name="$PROJECT_DIR$/test/controllers" />
       <recent name="$PROJECT_DIR$/lib/elixir_ravelry_web/models" />
     </key>
   </component>
@@ -745,9 +742,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Mix_ExUnit_test_(1) - 2017.09.01 at 20h 30m 27s.xml">
-      <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="Mix_ExUnit_test_(1) - 2017.09.01 at 20h 30m 46s.xml">
       <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
     </history-entry>
@@ -775,6 +769,9 @@
     <history-entry file="Mix_ExUnit_test_(1) - 2017.09.01 at 20h 55m 55s.xml">
       <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="Mix_ExUnit_test_(1) - 2017.09.01 at 20h 56m 49s.xml">
+      <configuration name="Mix ExUnit test (1)" configurationId="MixExUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1101" extended-state="6" />
@@ -788,8 +785,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328934" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43133265" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27918783" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43133265" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27873856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21033014" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -858,20 +855,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/node_modules/uglify-js/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="371" column="30" lean-forward="false" selection-start-line="371" selection-start-column="30" selection-end-line="371" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/roving_controller.ex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/models/cards.ex">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1240,18 +1223,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex">
+    <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="60" lean-forward="false" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+        <state relative-caret-position="0">
+          <caret line="0" column="48" lean-forward="true" selection-start-line="0" selection-start-column="48" selection-end-line="0" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
+    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/spins_controller.ex">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+        <state relative-caret-position="255">
+          <caret line="17" column="41" lean-forward="false" selection-start-line="17" selection-start-column="41" selection-end-line="17" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="62" lean-forward="false" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/elixir_ravelry/repo/spins.ex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
           <folding />
         </state>
       </provider>
