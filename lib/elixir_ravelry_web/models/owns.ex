@@ -12,7 +12,7 @@ defmodule ElixirRavelryWeb.Owns do
 
   defimpl Poison.Encoder do
     def encode(%{id: id, wool_id: wool_id, user_id: user_id, started_at: started_at}, options) do
-      Poison.Encoder.Map.encode(%{id: id, wool_id: wool_id, user_id: user_id, started_at: started_at}, options)
+      Poison.Encoder.Map.encode(%{id: id, wool_id: wool_id, user_id: user_id, started_at: started_at, type: "Owns"}, options)
     end
   end
 

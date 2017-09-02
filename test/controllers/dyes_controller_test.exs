@@ -1,7 +1,7 @@
 defmodule ElixirRavelryWeb.DyesControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{DyesCase}
+  import ElixirRavelry.{DyedRovingCase, DyesCase, UserCase}
 
   # Callbacks
 
@@ -26,9 +26,11 @@ defmodule ElixirRavelryWeb.DyesControllerTest do
   end
 
   test "GET /api/v1/dyes with dyes", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    dyes = create_dyes(bolt_sips_conn)
+    dyed_roving = create_dyed_roving(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    dyes = create_dyes(bolt_sips_conn, %{user_id: user.id, dyed_roving_id: dyed_roving.id})
     conn = get conn, "/api/v1/dyes"
-    assert json_response(conn, 200) == [%{"id" => dyes.id, "user_id" => dyes.user_id, "dyed_roving_id" => dyes.dyed_roving_id}]
+    assert json_response(conn, 200) == [%{"id" => dyes.id, "user_id" => dyes.user_id, "dyed_roving_id" => dyes.dyed_roving_id, "type" => "Dyes"}]
   end
 
   test "GET /api/v1/dyes/:id without dyes", %{conn: conn} do
@@ -37,9 +39,11 @@ defmodule ElixirRavelryWeb.DyesControllerTest do
   end
 
   test "GET /api/v1/dyes/:id with dyes", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    dyes = create_dyes(bolt_sips_conn)
+    dyed_roving = create_dyed_roving(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    dyes = create_dyes(bolt_sips_conn, %{user_id: user.id, dyed_roving_id: dyed_roving.id})
     conn = get conn, "/api/v1/dyes/#{dyes.id}"
-    assert json_response(conn, 200) == %{"id" => dyes.id, "user_id" => dyes.user_id, "dyed_roving_id" => dyes.dyed_roving_id}
+    assert json_response(conn, 200) == %{"id" => dyes.id, "user_id" => dyes.user_id, "dyed_roving_id" => dyes.dyed_roving_id, "type" => "Dyes"}
   end
 
 end

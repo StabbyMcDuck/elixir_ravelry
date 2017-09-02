@@ -10,7 +10,7 @@ defmodule ElixirRavelryWeb.Knits do
 
   defimpl Poison.Encoder do
     def encode(%{id: id, project_id: project_id, user_id: user_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, project_id: project_id, user_id: user_id}, options)
+      Poison.Encoder.Map.encode(%{id: id, project_id: project_id, user_id: user_id, type: "Knits"}, options)
     end
   end
 

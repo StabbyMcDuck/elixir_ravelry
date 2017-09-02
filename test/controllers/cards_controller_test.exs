@@ -1,7 +1,7 @@
 defmodule ElixirRavelryWeb.CardsControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{CardsCase}
+  import ElixirRavelry.{CardsCase, RovingCase, UserCase}
 
   # Callbacks
 
@@ -26,9 +26,11 @@ defmodule ElixirRavelryWeb.CardsControllerTest do
   end
 
   test "GET /api/v1/cards with cards", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    cards = create_cards(bolt_sips_conn)
+    roving = create_roving(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    cards = create_cards(bolt_sips_conn, %{user_id: user.id, roving_id: roving.id})
     conn = get conn, "/api/v1/cards"
-    assert json_response(conn, 200) == [%{"id" => cards.id, "user_id" => cards.user_id, "roving_id" => cards.roving_id}]
+    assert json_response(conn, 200) == [%{"id" => cards.id, "user_id" => cards.user_id, "roving_id" => cards.roving_id, "type" => "Cards"}]
   end
 
   test "GET /api/v1/cards/:id without cards", %{conn: conn} do
@@ -37,8 +39,10 @@ defmodule ElixirRavelryWeb.CardsControllerTest do
   end
 
   test "GET /api/v1/cards/:id with cards", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    cards = create_cards(bolt_sips_conn)
+    roving = create_roving(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    cards = create_cards(bolt_sips_conn, %{user_id: user.id, roving_id: roving.id})
     conn = get conn, "/api/v1/cards/#{cards.id}"
-    assert json_response(conn, 200) == %{"id" => cards.id, "user_id" => cards.user_id, "roving_id" => cards.roving_id}
+    assert json_response(conn, 200) == %{"id" => cards.id, "user_id" => cards.user_id, "roving_id" => cards.roving_id, "type" => "Cards"}
   end
 end

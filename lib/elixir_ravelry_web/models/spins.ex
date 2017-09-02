@@ -10,8 +10,7 @@ defmodule ElixirRavelryWeb.Spins do
 
   defimpl Poison.Encoder do
     def encode(%{id: id, yarn_id: yarn_id, user_id: user_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, yarn_id: yarn_id, user_id: user_id}, options)
+      Poison.Encoder.Map.encode(%{id: id, yarn_id: yarn_id, user_id: user_id, type: "Spins"}, options)
     end
   end
-
 end

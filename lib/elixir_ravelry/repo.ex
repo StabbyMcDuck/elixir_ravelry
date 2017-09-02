@@ -23,6 +23,10 @@ defmodule ElixirRavelry.Repo do
     __MODULE__.Cards
   end
 
+  def type_to_repo_module("KNITS") do
+    __MODULE__.Knits
+  end
+
   def type_to_repo_module("DYES") do
     __MODULE__.Dyes
   end

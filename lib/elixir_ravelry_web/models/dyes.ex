@@ -10,7 +10,7 @@ defmodule ElixirRavelryWeb.Dyes do
 
   defimpl Poison.Encoder do
     def encode(%{id: id, dyed_roving_id: dyed_roving_id, user_id: user_id}, options) do
-      Poison.Encoder.Map.encode(%{id: id, dyed_roving_id: dyed_roving_id, user_id: user_id}, options)
+      Poison.Encoder.Map.encode(%{id: id, dyed_roving_id: dyed_roving_id, user_id: user_id, type: "Dyes"}, options)
     end
   end
 

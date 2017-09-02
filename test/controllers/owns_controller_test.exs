@@ -1,7 +1,7 @@
 defmodule ElixirRavelryWeb.OwnsControllerTest do
   use ElixirRavelryWeb.ConnCase
 
-  import ElixirRavelry.{OwnsCase}
+  import ElixirRavelry.{OwnsCase, UserCase, WoolCase}
 
   # Callbacks
 
@@ -26,9 +26,11 @@ defmodule ElixirRavelryWeb.OwnsControllerTest do
   end
 
   test "GET /api/v1/owns with owns", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    owns = create_owns(bolt_sips_conn)
+    wool = create_wool(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    owns = create_owns(bolt_sips_conn, %{user_id: user.id, wool_id: wool.id})
     conn = get conn, "/api/v1/owns"
-    assert json_response(conn, 200) == [%{"id" => owns.id, "started_at" => Ecto.DateTime.to_iso8601(owns.started_at), "user_id" => owns.user_id, "wool_id" => owns.wool_id}]
+    assert json_response(conn, 200) == [%{"id" => owns.id, "started_at" => Ecto.DateTime.to_iso8601(owns.started_at), "user_id" => owns.user_id, "wool_id" => owns.wool_id, "type" => "Owns"}]
   end
 
   test "GET /api/v1/owns/:id without owns", %{conn: conn} do
@@ -37,9 +39,11 @@ defmodule ElixirRavelryWeb.OwnsControllerTest do
   end
 
   test "GET /api/v1/owns/:id with owns", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
-    owns = create_owns(bolt_sips_conn)
+    wool = create_wool(bolt_sips_conn)
+    user = create_user(bolt_sips_conn)
+    owns = create_owns(bolt_sips_conn, %{user_id: user.id, wool_id: wool.id})
     conn = get conn, "/api/v1/owns/#{owns.id}"
-    assert json_response(conn, 200) == %{"id" => owns.id, "started_at" => Ecto.DateTime.to_iso8601(owns.started_at), "user_id" => owns.user_id, "wool_id" => owns.wool_id}
+    assert json_response(conn, 200) == %{"id" => owns.id, "started_at" => Ecto.DateTime.to_iso8601(owns.started_at), "user_id" => owns.user_id, "wool_id" => owns.wool_id, "type" => "Owns"}
   end
 
 end
