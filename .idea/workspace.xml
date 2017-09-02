@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c64a07f8-d916-47b2-b171-f1c0c8a17690" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/knits.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo/project.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/controllers/project_controller.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/controllers/project_controller_test.exs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/graph_case.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/knits_case.ex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/support/project_case.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry/repo.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/cards.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/cards.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/dyes.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/dyes.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/knits.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/knits.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/owns.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/owns.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/spins.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/spins.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/user.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/models/user.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" afterPath="$PROJECT_DIR$/lib/elixir_ravelry_web/router.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/cards_controller_test.exs" afterPath="$PROJECT_DIR$/test/controllers/cards_controller_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/dyes_controller_test.exs" afterPath="$PROJECT_DIR$/test/controllers/dyes_controller_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/owns_controller_test.exs" afterPath="$PROJECT_DIR$/test/controllers/owns_controller_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/spins_controller_test.exs" afterPath="$PROJECT_DIR$/test/controllers/spins_controller_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/controllers/user_controller_test.exs" afterPath="$PROJECT_DIR$/test/controllers/user_controller_test.exs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/support/cards_case.ex" afterPath="$PROJECT_DIR$/test/support/cards_case.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/support/dyes_case.ex" afterPath="$PROJECT_DIR$/test/support/dyes_case.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/support/owns_case.ex" afterPath="$PROJECT_DIR$/test/support/owns_case.ex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/support/spins_case.ex" afterPath="$PROJECT_DIR$/test/support/spins_case.ex" />
-    </list>
+    <list default="true" id="c64a07f8-d916-47b2-b171-f1c0c8a17690" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/_build/dev/lib/elixirravelry/ebin/" />
     <ignored path="$PROJECT_DIR$/_build/test/lib/elixirravelry/ebin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,8 +51,8 @@
           <file leaf-file-name="dyes_controller_test.exs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="406">
-                  <caret line="45" column="142" lean-forward="false" selection-start-line="45" selection-start-column="142" selection-end-line="45" selection-end-column="142" />
+                <state relative-caret-position="60">
+                  <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -131,7 +105,7 @@
           <file leaf-file-name="spins_controller_test.exs" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/controllers/spins_controller_test.exs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="407">
+                <state relative-caret-position="675">
                   <caret line="45" column="131" lean-forward="false" selection-start-line="45" selection-start-column="131" selection-end-line="45" selection-end-column="131" />
                   <folding />
                 </state>
@@ -795,8 +769,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328934" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43133265" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27873856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43133265" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27873856" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21033014" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1249,14 +1223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="45" column="142" lean-forward="false" selection-start-line="45" selection-start-column="142" selection-end-line="45" selection-end-column="142" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/controllers/cards_controller_test.exs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -1267,8 +1233,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/controllers/spins_controller_test.exs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
+        <state relative-caret-position="675">
           <caret line="45" column="131" lean-forward="false" selection-start-line="45" selection-start-column="131" selection-end-line="45" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/controllers/dyes_controller_test.exs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
