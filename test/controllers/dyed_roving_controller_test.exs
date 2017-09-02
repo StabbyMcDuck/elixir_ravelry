@@ -1,22 +1,8 @@
 defmodule ElixirRavelryWeb.DyedRovingControllerTest do
   use ElixirRavelryWeb.ConnCase
+  use ElixirRavelry.Neo4jConnCase
 
   import ElixirRavelry.DyedRovingCase
-
-  # Callbacks
-
-  setup %{conn: conn} do
-    bolt_sips_conn = Bolt.Sips.conn()
-                     |> Bolt.Sips.begin()
-
-    on_exit fn ->
-      Bolt.Sips.rollback(bolt_sips_conn)
-    end
-
-    conn = Plug.Conn.put_private(conn, :bolt_sips_conn, bolt_sips_conn)
-
-    %{bolt_sips_conn: bolt_sips_conn, conn: conn}
-  end
 
   # Test
 
