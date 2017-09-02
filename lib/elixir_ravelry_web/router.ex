@@ -14,9 +14,13 @@ defmodule ElixirRavelryWeb.Router do
     resources "/dyed_roving", DyedRovingController, only: ~w(index show)a do
       get "/graph", DyedRovingController, :graph
     end
+    resources "/dyes", DyesController, only: ~w(index show)a
     resources "/material-for", MaterialForController, only: ~w(index show)a
     resources "/owns", OwnsController, only: ~w(index show)a
     resources "/users", UserController, only: ~w(index show)a
     resources "/wool", WoolController, only: ~w(index show)a
+    resources "/yarn", YarnController, only: ~w(index show)a do
+      get "/graph", YarnController, :graph
+    end
   end
 end
