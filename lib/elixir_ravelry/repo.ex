@@ -144,7 +144,7 @@ defmodule ElixirRavelry.Repo do
          #{graph_optional_match(direction)}
          WITH #{graph_with(direction)}
          RETURN #{graph_return(direction)}
-         """
+         """,
          %{id: id}
        )
     |> graph_return_to_list()

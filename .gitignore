@@ -2,6 +2,7 @@
 /_build
 /db
 /deps
+/doc
 /*.ez
 
 # Generated on crash by the VM
@@ -14,6 +15,7 @@ erl_crash.dump
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
+
 
 # The config/prod.secret.exs file by default contains sensitive
 # data and you should not commit it into version control.

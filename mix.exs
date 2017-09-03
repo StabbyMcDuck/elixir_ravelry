@@ -10,7 +10,9 @@ defmodule ElixirRavelry.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     preferred_cli_env: [docs: :test]
+    ]
   end
 
   # Configuration for the OTP application.
@@ -47,7 +49,8 @@ defmodule ElixirRavelry.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:bolt_sips, "~> 0.3.2"},
-     {:faker, "~> 0.8.0", only: :test}]
+     {:faker, "~> 0.8.0", only: :test},
+     {:ex_doc, "~> 0.16.3", only: :test}]
   end
 
   defp aliases() do
