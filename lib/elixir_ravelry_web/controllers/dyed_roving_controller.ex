@@ -22,9 +22,13 @@ defmodule ElixirRavelryWeb.DyedRovingController do
 
   def graph(conn, params = %{"dyed_roving_id"=>id}) do
     direction = Map.get(params, "direction", "both")
+    options = case params do
+      %{"type" => type} when is_binary(type) -> %{type: type}
+      _ -> %{}
+    end
     conn
     |> bolt_sips_conn()
-    |> Repo.DyedRoving.graph(id, direction)
+    |> Repo.DyedRoving.graph(id, direction, options)
     |> case do
          {:ok, graph} -> json conn, graph
          :error -> not_found(conn)

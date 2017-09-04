@@ -20,11 +20,15 @@ defmodule ElixirRavelryWeb.ProjectController do
          end
   end
 
-  def graph(conn, params = %{"project_id"=>id}) do
+  def graph(conn, params = %{"project_id" => id}) do
     direction = Map.get(params, "direction", "both")
+    options = case params do
+      %{"type" => type} when is_binary(type) -> %{type: type}
+      _ -> %{}
+    end
     conn
     |> bolt_sips_conn()
-    |> Repo.Project.graph(id, direction)
+    |> Repo.Project.graph(id, direction, options)
     |> case do
          {:ok, graph} -> json conn, graph
          :error -> not_found(conn)

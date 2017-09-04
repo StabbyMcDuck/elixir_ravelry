@@ -279,6 +279,45 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
       assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in list
     end
 
+    test "With project backwards only users", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
+      %{
+        cards_user: cards_user,
+        dyes_user: dyes_user,
+        spins_user: spins_user,
+        knits_user: knits_user,
+        project: project
+      } = create_connected_project(bolt_sips_conn)
+      conn = get conn, "/api/v1/projects/#{project.id}/graph", %{"direction" => "backwards", "type" => "User"}
+      assert list = json_response(conn, 200)
+      assert is_list(list)
+      assert length(list) == 8 # 4 users + 4 roles
+
+      assert %{
+               "name" => cards_user.name,
+               "id" => cards_user.id,
+               "type" => "User"
+             } in list
+
+      assert %{
+               "name" => dyes_user.name,
+               "id" => dyes_user.id,
+               "type" => "User"
+             } in list
+
+      assert %{
+               "name" => spins_user.name,
+               "id" => spins_user.id,
+               "type" => "User"
+             } in list
+
+      assert %{
+               "name" => knits_user.name,
+               "id" => knits_user.id,
+               "type" => "User"
+             } in list
+
+    end
+
     test "With project both", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
       %{
         wool: wool,

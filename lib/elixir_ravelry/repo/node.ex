@@ -40,7 +40,7 @@ defmodule ElixirRavelry.Repo.Node do
   @doc """
   Returns a flat list of all `Ecto.Schema` structs in a `direction`
   """
-  @callback graph(conn :: %Bolt.Sips.Connection{}, id, direction) :: [struct]
+  @callback graph(conn :: %Bolt.Sips.Connection{}, id, direction, options :: map) :: [struct]
 
   @doc """
   Returns a list of `Ecto.Schema` structs for the nodes of a particular `type`
@@ -56,15 +56,15 @@ defmodule ElixirRavelry.Repo.Node do
         Repo.get_node(conn, type(), id)
       end
 
-      def graph(conn, id, direction) do
-        Repo.graph(conn, type(), id, direction)
+      def graph(conn, id, direction, options) do
+        Repo.graph(conn, type(), id, direction, options)
       end
 
       def list(conn) do
         Repo.list_node(conn, type())
       end
 
-      defoverridable [get: 2, graph: 3, list: 1]
+      defoverridable [get: 2, graph: 4, list: 1]
     end
   end
 end

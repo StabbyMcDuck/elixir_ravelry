@@ -135,31 +135,51 @@ defmodule ElixirRavelry.Repo do
     |> return_to_list()
   end
 
-  def graph(conn, type, id, direction) do
+  def graph(conn, type, id, direction, options) do
     conn
     |> Bolt.Sips.query!(
          """
          MATCH (n:#{type})
          WHERE id(n) = toInteger({id})
-         #{graph_optional_match(direction)}
+         #{graph_optional_match(direction, options)}
          WITH #{graph_with(direction)}
          RETURN #{graph_return(direction)}
          """,
-         %{id: id}
+         cypher_parameters(id, options)
        )
     |> graph_return_to_list()
   end
 
-  defp graph_optional_match("forward") do
-    "OPTIONAL MATCH forward = (n)-[forward_relationship*0..]->(sink)"
+  defp graph_optional_match("forward", options) do
+    "OPTIONAL MATCH forward = (n)-[forward_relationship*0..]->(sink#{forward_type(options)})"
   end
 
-  defp graph_optional_match("both") do
-    "#{graph_optional_match("forward")}\n#{graph_optional_match("backwards")}"
+  defp graph_optional_match("both", options) do
+    "#{graph_optional_match("forward", options)}\n#{graph_optional_match("backwards", options)}"
   end
 
-  defp graph_optional_match("backwards") do
-    "OPTIONAL MATCH backwards = (source)-[backwards_relationship*0..]->(n)"
+  defp graph_optional_match("backwards", options) do
+    "OPTIONAL MATCH backwards = (source#{backwards_type(options)})-[backwards_relationship*0..]->(n)"
+  end
+
+  defp forward_type(%{type: type}) do
+    ":#{type}"
+  end
+
+  defp forward_type(%{}) do
+    ""
+  end
+
+  defp backwards_type(%{type: type}) do
+    ":#{type}"
+  end
+
+  defp backwards_type(%{}) do
+    ""
+  end
+
+  defp cypher_parameters(id, options) do
+    Map.put(options, :id, id)
   end
 
   defp graph_return("backwards") do
