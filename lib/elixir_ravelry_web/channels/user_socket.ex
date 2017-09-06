@@ -2,7 +2,7 @@ defmodule ElixirRavelryWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ElixirRavelryWeb.RoomChannel
+  channel "graph:*", ElixirRavelryWeb.GraphChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

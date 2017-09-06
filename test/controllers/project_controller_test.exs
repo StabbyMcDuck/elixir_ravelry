@@ -69,93 +69,94 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
         project: project,
       } = create_connected_project(bolt_sips_conn)
       conn = get conn, "/api/v1/projects/#{project.id}/graph"
-      assert list = json_response(conn, 200)
-      assert is_list(list)
+      assert %{"nodes" => nodes, "relationships" => relationships} = json_response(conn, 200)
+      assert is_list(nodes)
+      assert is_list(relationships)
 
-      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
+      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in nodes
       assert %{
                "end_node_id" => wool_material_for_roving.end_node_id,
                "id" => wool_material_for_roving.id,
                "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
       assert %{
                "roving_id" => cards.roving_id,
                "id" => cards.id,
                "user_id" => cards_user.id,
                "type" => "Cards"
-             } in list
+             } in relationships
 
       assert %{
                "name" => cards_user.name,
                "id" => cards_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "dyed_roving_id" => dyes.dyed_roving_id,
                "id" => dyes.id,
                "user_id" => dyes_user.id,
                "type" => "Dyes"
-             } in list
+             } in relationships
 
       assert %{
                "name" => dyes_user.name,
                "id" => dyes_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "yarn_id" => spins.yarn_id,
                "id" => spins.id,
                "user_id" => spins_user.id,
                "type" => "Spins"
-             } in list
+             } in relationships
 
       assert %{
                "name" => spins_user.name,
                "id" => spins_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "project_id" => knits.project_id,
                "id" => knits.id,
                "user_id" => knits_user.id,
                "type" => "Knits"
-             } in list
+             } in relationships
 
       assert %{
                "name" => knits_user.name,
                "id" => knits_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
-      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in nodes
       assert %{
                "end_node_id" => roving_material_for_dyed_roving.end_node_id,
                "id" => roving_material_for_dyed_roving.id,
                "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in nodes
       assert %{
                "end_node_id" => dyed_roving_material_for_yarn.end_node_id,
                "id" => dyed_roving_material_for_yarn.id,
                "start_node_id" => dyed_roving_material_for_yarn.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in list
+      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in nodes
       assert %{
                "end_node_id" => yarn_material_for_project.end_node_id,
                "id" => yarn_material_for_project.id,
                "start_node_id" => yarn_material_for_project.start_node_id,
                "type" => "MaterialFor"
-             } in list
-      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in list
+             } in relationships
+      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in nodes
     end
 
     test "With project forward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
@@ -163,10 +164,11 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
         project: project,
       } = create_connected_project(bolt_sips_conn)
       conn = get conn, "/api/v1/projects/#{project.id}/graph", %{"direction" => "forward"}
-      assert list = json_response(conn, 200)
-      assert is_list(list)
+      assert %{"nodes" => nodes, "relationships" => relationships} = json_response(conn, 200)
+      assert is_list(nodes)
+      assert is_list(relationships)
 
-      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in list
+      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in nodes
     end
 
     test "With project backward", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
@@ -190,93 +192,95 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
         project: project,
       } = create_connected_project(bolt_sips_conn)
       conn = get conn, "/api/v1/projects/#{project.id}/graph", %{"direction" => "backwards"}
-      assert list = json_response(conn, 200)
-      assert is_list(list)
+      assert %{"nodes" => nodes, "relationships" => relationships} = json_response(conn, 200)
+      assert is_list(nodes)
+      assert is_list(relationships)
 
-      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
+      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in nodes
       assert %{
                "end_node_id" => wool_material_for_roving.end_node_id,
                "id" => wool_material_for_roving.id,
                "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
       assert %{
                "roving_id" => cards.roving_id,
                "id" => cards.id,
                "user_id" => cards_user.id,
                "type" => "Cards"
-             } in list
+             } in relationships
 
       assert %{
                "name" => cards_user.name,
                "id" => cards_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "dyed_roving_id" => dyes.dyed_roving_id,
                "id" => dyes.id,
                "user_id" => dyes_user.id,
                "type" => "Dyes"
-             } in list
+             } in relationships
 
       assert %{
                "name" => dyes_user.name,
                "id" => dyes_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "yarn_id" => spins.yarn_id,
                "id" => spins.id,
                "user_id" => spins_user.id,
                "type" => "Spins"
-             } in list
+             } in relationships
 
       assert %{
                "name" => spins_user.name,
                "id" => spins_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "project_id" => knits.project_id,
                "id" => knits.id,
                "user_id" => knits_user.id,
                "type" => "Knits"
-             } in list
+             } in relationships
 
       assert %{
                "name" => knits_user.name,
                "id" => knits_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
-      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in nodes
       assert %{
                "end_node_id" => roving_material_for_dyed_roving.end_node_id,
                "id" => roving_material_for_dyed_roving.id,
                "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in nodes
       assert %{
                "end_node_id" => dyed_roving_material_for_yarn.end_node_id,
                "id" => dyed_roving_material_for_yarn.id,
                "start_node_id" => dyed_roving_material_for_yarn.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in list
+      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in nodes
       assert %{
                "end_node_id" => yarn_material_for_project.end_node_id,
                "id" => yarn_material_for_project.id,
                "start_node_id" => yarn_material_for_project.start_node_id,
                "type" => "MaterialFor"
-             } in list
-      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in list
+             } in relationships
+
+      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in nodes
     end
 
     test "With project backwards only users", %{bolt_sips_conn: bolt_sips_conn, conn: conn} do
@@ -288,33 +292,34 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
         project: project
       } = create_connected_project(bolt_sips_conn)
       conn = get conn, "/api/v1/projects/#{project.id}/graph", %{"direction" => "backwards", "type" => "User"}
-      assert list = json_response(conn, 200)
-      assert is_list(list)
-      assert length(list) == 8 # 4 users + 4 roles
+      assert %{"nodes" => nodes, "relationships" => relationships} = json_response(conn, 200)
+      assert is_list(nodes)
+      assert is_list(relationships)
+      assert length(nodes) == 4
 
       assert %{
                "name" => cards_user.name,
                "id" => cards_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "name" => dyes_user.name,
                "id" => dyes_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "name" => spins_user.name,
                "id" => spins_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "name" => knits_user.name,
                "id" => knits_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
     end
 
@@ -339,93 +344,94 @@ defmodule ElixirRavelryWeb.ProjectControllerTest do
         project: project,
       } = create_connected_project(bolt_sips_conn)
       conn = get conn, "/api/v1/projects/#{project.id}/graph", %{"direction" => "both"}
-      assert list = json_response(conn, 200)
-      assert is_list(list)
+      assert %{"nodes" => nodes, "relationships" => relationships} = json_response(conn, 200)
+      assert is_list(nodes)
+      assert is_list(relationships)
 
-      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in list
+      assert %{"id" => wool.id, "name" => wool.name, "type" => "Wool"} in nodes
       assert %{
                "end_node_id" => wool_material_for_roving.end_node_id,
                "id" => wool_material_for_roving.id,
                "start_node_id" => wool_material_for_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
       assert %{
                "roving_id" => cards.roving_id,
                "id" => cards.id,
                "user_id" => cards_user.id,
                "type" => "Cards"
-             } in list
+             } in relationships
 
       assert %{
                "name" => cards_user.name,
                "id" => cards_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "dyed_roving_id" => dyes.dyed_roving_id,
                "id" => dyes.id,
                "user_id" => dyes_user.id,
                "type" => "Dyes"
-             } in list
+             } in relationships
 
       assert %{
                "name" => dyes_user.name,
                "id" => dyes_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "yarn_id" => spins.yarn_id,
                "id" => spins.id,
                "user_id" => spins_user.id,
                "type" => "Spins"
-             } in list
+             } in relationships
 
       assert %{
                "name" => spins_user.name,
                "id" => spins_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
       assert %{
                "project_id" => knits.project_id,
                "id" => knits.id,
                "user_id" => knits_user.id,
                "type" => "Knits"
-             } in list
+             } in relationships
 
       assert %{
                "name" => knits_user.name,
                "id" => knits_user.id,
                "type" => "User"
-             } in list
+             } in nodes
 
-      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in list
+      assert %{"id" => roving.id, "name" => roving.name, "type" => "Roving"} in nodes
       assert %{
                "end_node_id" => roving_material_for_dyed_roving.end_node_id,
                "id" => roving_material_for_dyed_roving.id,
                "start_node_id" => roving_material_for_dyed_roving.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in list
+      assert %{"id" => dyed_roving.id, "name" => dyed_roving.name, "type" => "DyedRoving"} in nodes
       assert %{
                "end_node_id" => dyed_roving_material_for_yarn.end_node_id,
                "id" => dyed_roving_material_for_yarn.id,
                "start_node_id" => dyed_roving_material_for_yarn.start_node_id,
                "type" => "MaterialFor"
-             } in list
+             } in relationships
 
-      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in list
+      assert %{"id" => yarn.id, "name" => yarn.name, "type" => "Yarn"} in nodes
       assert %{
                "end_node_id" => yarn_material_for_project.end_node_id,
                "id" => yarn_material_for_project.id,
                "start_node_id" => yarn_material_for_project.start_node_id,
                "type" => "MaterialFor"
-             } in list
-      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in list
+             } in relationships
+      assert %{"id" => project.id, "name" => project.name, "type" => "Project"} in nodes
     end
   end
 end

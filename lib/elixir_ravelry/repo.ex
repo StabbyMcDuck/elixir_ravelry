@@ -147,7 +147,7 @@ defmodule ElixirRavelry.Repo do
          """,
          cypher_parameters(id, options)
        )
-    |> graph_return_to_list()
+    |> graph_return_to_map()
   end
 
   defp graph_optional_match("forward", options) do
@@ -208,17 +208,33 @@ defmodule ElixirRavelry.Repo do
     "COLLECT(DISTINCT last(forward_relationship)) as forward_rels"
   end
 
-  defp graph_return_to_list([map]) when is_map(map) do
-    map
-    |> Enum.flat_map(
-         fn {_, value} when is_list(value) ->
-           Enum.map(value, &row_to_struct/1)
-         end
-       )
-    |> case do
-         [] -> :error
-         list -> {:ok, list}
-       end
+  defp rows_list_to_structs(rows_list) do
+    Enum.flat_map rows_list, fn relationships ->
+      Enum.map(relationships, &row_to_struct/1)
+    end
+  end
+
+  defp graph_return_to_map([map]) when is_map(map) do
+    backwards_rels = Map.get(map, "backwards_rels", [])
+    forward_rels = Map.get(map, "forward_rels", [])
+    sink_nodes = Map.get(map, "sink_nodes", [])
+    source_nodes = Map.get(map, "source_nodes", [])
+
+    relationship_structs = rows_list_to_structs([backwards_rels, forward_rels])
+    node_structs = rows_list_to_structs([sink_nodes, source_nodes])
+
+    case {node_structs, relationship_structs} do
+      {[], []} ->
+        :error
+      {_, _} ->
+        {
+          :ok,
+          %{
+            nodes: node_structs,
+            relationships: relationship_structs
+          }
+        }
+    end
   end
 
   defp return_to_list(return) when is_list(return) do

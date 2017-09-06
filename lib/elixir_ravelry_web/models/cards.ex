@@ -3,9 +3,19 @@ defmodule ElixirRavelryWeb.Cards do
 
     alias ElixirRavelryWeb.{User, Roving}
 
+    @optional_fields []
+    @required_fields [:user_id, :roving_id]
+    @allowed_fields @optional_fields ++ @required_fields
+
     schema "cards" do
       belongs_to :user, User
       belongs_to :roving, Roving
+    end
+
+    def changeset(data, params) do
+      data
+      |> cast(params, @allowed_fields)
+      |> validate_required(@required_fields)
     end
 
     defimpl Poison.Encoder do
