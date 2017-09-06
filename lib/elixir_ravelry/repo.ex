@@ -54,8 +54,11 @@ defmodule ElixirRavelry.Repo do
          query_options
        )
     |> return_to_list()
-    |> hd()
-  end
+    |> case do
+         [] -> :error
+         [created] -> {:ok, created}
+       end
+    end
 
   defp property_cypher(properties) do
     property_cypher_fields = Enum.map_join(properties, ", ", fn {key, _} ->
@@ -135,11 +138,17 @@ defmodule ElixirRavelry.Repo do
     |> return_to_list()
   end
 
-  def graph(conn, type, id, direction, options) do
+  def graph(conn, type \\ nil, id, direction, options) do
+    n_type = if type do
+      ":#{type}"
+    else
+      ""
+    end
+
     conn
     |> Bolt.Sips.query!(
          """
-         MATCH (n:#{type})
+         MATCH (n#{n_type})
          WHERE id(n) = toInteger({id})
          #{graph_optional_match(direction, options)}
          WITH #{graph_with(direction)}
@@ -209,9 +218,13 @@ defmodule ElixirRavelry.Repo do
   end
 
   defp rows_list_to_structs(rows_list) do
-    Enum.flat_map rows_list, fn relationships ->
-      Enum.map(relationships, &row_to_struct/1)
-    end
+    rows_list
+    |> Enum.flat_map(
+         fn rows ->
+           Enum.map(rows, &row_to_struct/1)
+         end
+       )
+    |> Enum.uniq()
   end
 
   defp graph_return_to_map([map]) when is_map(map) do

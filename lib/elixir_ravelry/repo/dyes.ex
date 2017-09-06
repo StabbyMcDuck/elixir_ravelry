@@ -6,15 +6,18 @@ defmodule ElixirRavelry.Repo.Dyes do
 
   # Macros
 
+  @impl ElixirRavelry.Repo.Relationship
   defmacro type, do: "DYES"
   use ElixirRavelry.Repo.Relationship
 
   #Functions
 
+  @impl ElixirRavelry.Repo.Relationship
   def create(conn, %Dyes{user_id: user_id, dyed_roving_id: dyed_roving_id}) do
     Repo.create_relationship(conn, %{type: type(), end_node_id: dyed_roving_id, start_node_id: user_id})
   end
 
+  @impl ElixirRavelry.Repo.Relationship
   def row_to_struct(%Bolt.Sips.Types.Relationship{"end": dyed_roving_id, id: id, start: user_id, type: type()}) do
     %Dyes{
       __meta__: %Ecto.Schema.Metadata{

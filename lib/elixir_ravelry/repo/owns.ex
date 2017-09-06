@@ -6,15 +6,18 @@ defmodule ElixirRavelry.Repo.Owns do
 
   # Macros
 
+  @impl ElixirRavelry.Repo.Relationship
   defmacro type, do: "OWNS"
   use ElixirRavelry.Repo.Relationship
 
   #Functions
 
+  @impl ElixirRavelry.Repo.Relationship
   def create(conn, %Owns{started_at: started_at, user_id: user_id, wool_id: wool_id}) do
     Repo.create_relationship(conn, %{type: type(), end_node_id: wool_id, start_node_id: user_id, started_at: Repo.to_timestamp(started_at)})
   end
 
+  @impl ElixirRavelry.Repo.Relationship
   def row_to_struct(
         %Bolt.Sips.Types.Relationship{
           "end": wool_id,

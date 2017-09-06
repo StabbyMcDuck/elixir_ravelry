@@ -52,14 +52,17 @@ defmodule ElixirRavelry.Repo.Node do
       @behaviour ElixirRavelry.Repo.Node
       alias ElixirRavelry.Repo
 
+      @impl ElixirRavelry.Repo.Node
       def get(conn, id) do
         Repo.get_node(conn, type(), id)
       end
 
+      @impl ElixirRavelry.Repo.Node
       def graph(conn, id, direction, options) do
         Repo.graph(conn, type(), id, direction, options)
       end
 
+      @impl ElixirRavelry.Repo.Node
       def list(conn) do
         Repo.list_node(conn, type())
       end

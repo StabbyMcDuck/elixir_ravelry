@@ -15,7 +15,7 @@ defmodule ElixirRavelryWeb.Router do
       get "/graph", DyedRovingController, :graph
     end
     resources "/dyes", DyesController, only: ~w(index show)a
-    resources "/material-for", MaterialForController, only: ~w(index show)a
+    resources "/material-for", MaterialForController, only: ~w(create index show)a
     resources "/owns", OwnsController, only: ~w(index show)a
     resources "/projects", ProjectController, only: ~w(index show)a do
       get "/graph", ProjectController, :graph

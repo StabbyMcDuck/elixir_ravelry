@@ -9,15 +9,20 @@ defmodule ElixirRavelryWeb.CardsController do
 
     if changeset.valid? do
       cards = Ecto.Changeset.apply_changes(changeset)
-      created =
-        conn
-        |> bolt_sips_conn()
-        |> Graph.create_relationship(cards, Roving, cards.roving_id)
 
       conn
-      |> put_status(:created)
-      |> json(created)
-
+      |> bolt_sips_conn()
+      |> Graph.create_relationship(cards, cards.roving_id)
+      |> case do
+           {:ok, created} ->
+             conn
+             |> put_status(:created)
+             |> json(created)
+           :error ->
+             conn
+             |> put_status(:unprocessable_entity)
+             |> json(%{})
+         end
     else
       conn
       |> put_status(:unprocessable_entity)
