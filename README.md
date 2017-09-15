@@ -1,5 +1,10 @@
 # ElixirRavelry
 
+Thanks for checking this out!  
+The slides for my talk are available at [https://www.slideshare.net/ReginaImhoff/elixir-neo4j/](https://www.slideshare.net/ReginaImhoff/elixir-neo4j/) and the video for my talk is available at [https://youtu.be/fWQy7aS_gd8](https://youtu.be/fWQy7aS_gd8)
+
+
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
